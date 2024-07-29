@@ -20,48 +20,46 @@ type FieldType = {
 };
 
 const messageRequire = "Đây là trường bắt buộc";
+const columns: TableProps<any>["columns"] = [
+  {
+    title: "STT",
+    dataIndex: "id",
+    render: (text: string) => <a>{text}</a>,
+  },
+  {
+    title: "Tên tài khoản",
+    dataIndex: "accountName",
+  },
+  {
+    title: "Số tài khoản",
+    dataIndex: "accountNumber",
+  },
+  {
+    title: "Ngân hàng",
+    dataIndex: "bank",
+  },
+  {
+    title: "Số tiền giao dịch",
+    dataIndex: "amount",
+  },
+  {
+    title: "Tình trạng",
+    dataIndex: "status",
+  },
+];
+const data = [
+  {
+    key: "1",
+    name: "John Brown",
+    money: "￥300,000.00",
+    address: "New York No. 1 Lake Park",
+  },
+];
 
 export function ProfileInformation() {
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     console.log("Success:", values);
   };
-
-  const columns: TableProps<any>["columns"] = [
-    {
-      title: "STT",
-      dataIndex: "id",
-      render: (text: string) => <a>{text}</a>,
-    },
-    {
-      title: "Tên tài khoản",
-      dataIndex: "accountName",
-    },
-    {
-      title: "Số tài khoản",
-      dataIndex: "accountNumber",
-    },
-    {
-      title: "Ngân hàng",
-      dataIndex: "bank",
-    },
-    {
-      title: "Số tiền giao dịch",
-      dataIndex: "amount",
-    },
-    {
-      title: "Tình trạng",
-      dataIndex: "status",
-    },
-  ];
-
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      money: "￥300,000.00",
-      address: "New York No. 1 Lake Park",
-    },
-  ];
 
   return (
     <div>
