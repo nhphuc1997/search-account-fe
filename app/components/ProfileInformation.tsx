@@ -1,3 +1,5 @@
+"use client";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import {
   Button,
   Col,
@@ -12,6 +14,7 @@ import {
   TableProps,
   Typography,
 } from "antd";
+import { useEffect, useState } from "react";
 
 type FieldType = {
   accountNumber?: string;
@@ -61,6 +64,32 @@ export function ProfileInformation() {
     console.log("Success:", values);
   };
 
+  const [banks, setBanks] = useState<any[]>([]);
+  const [banksFilter, setBanksFilter] = useState<string | null>(null);
+
+  useQuery({
+    queryKey: ["get-banks"],
+    queryFn: async () => {
+      await fetch("http://localhost:3001/bank")
+        .then((response) => response.json())
+        .then((jsonData) => {
+          if (jsonData?.statusCode === 200) {
+            const optionsBank = jsonData?.data?.map((item: any) => ({
+              value: item.name,
+              label: item.name,
+            }));
+            setBanks(optionsBank);
+          }
+        });
+
+      return;
+    },
+  });
+
+  const onChangeBankFilter = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+
   return (
     <div>
       <div>
@@ -71,32 +100,52 @@ export function ProfileInformation() {
 
       <Row>
         <Col xs={24} md={18}>
-          <Form name="horizontal_login" layout="inline" onFinish={onFinish}>
+          <Form
+            name="horizontal_login"
+            layout="inline"
+            onFinish={onFinish}
+            className="w-full flex flex-col md:flex-row"
+          >
             <Form.Item
-              label="Số tài khoản"
+              label="Số TK"
               name="accountNumber"
               rules={[{ required: true, message: messageRequire }]}
-              className="!my-2"
+              className="!my-2 !w-full md:!w-1/4"
             >
-              <Input type="text" placeholder="012301230123" />
+              <Input
+                type="text"
+                placeholder="012301230123"
+                onChange={(e: any) => console.log(e?.target?.value)}
+              />
             </Form.Item>
 
             <Form.Item
-              label="Chủ tài khoản"
+              label="Chủ TK"
               name="accountName"
               rules={[{ required: true, message: messageRequire }]}
-              className="!my-2"
+              className="!my-2 !w-full md:!w-1/4"
             >
-              <Input type="text" placeholder="CTY TNHH QK IMB" />
+              <Input
+                type="text"
+                placeholder="CTY TNHH QK IMB"
+                onChange={(e: any) => console.log(e?.target?.value)}
+              />
             </Form.Item>
 
             <Form.Item
               label="Ngân hàng"
               name="bank"
               rules={[{ required: true, message: messageRequire }]}
-              className="!my-2"
+              className="!my-2 !w-full md:!w-1/4"
             >
-              <Input type="text" placeholder="MBBank" />
+              <Select
+                showSearch
+                placeholder="MBBank"
+                optionFilterProp="label"
+                options={banks}
+                onChange={(e: any) => console.log(e)}
+                className="!w-full"
+              />
             </Form.Item>
 
             {/* <Form.Item className="!my-2">
