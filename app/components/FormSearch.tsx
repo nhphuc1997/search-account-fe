@@ -1,7 +1,7 @@
 import { useAccountStore } from "@/stores/account.store";
 import { doGet } from "@/utils/doMethod";
 import { useMutation } from "@tanstack/react-query";
-import { Button, Form, FormProps, Input } from "antd";
+import { Button, Form, FormProps, Input, notification } from "antd";
 import { useEffect, useRef } from "react";
 
 type FieldType = {
@@ -11,6 +11,7 @@ type FieldType = {
 export default function FormSearch() {
   const accountStore = useAccountStore((state: any) => state);
   const submitBtn = useRef<any>(null);
+  const [api, contextHolder] = notification.useNotification();
 
   const accountMutation = useMutation({
     mutationKey: ["account-muation", [accountStore.page]],
@@ -36,6 +37,12 @@ export default function FormSearch() {
       accountStore.setPage(data?.data?.page);
       accountStore.setLoading(false);
     },
+    onError() {
+      api.info({
+        message: null,
+        description: `Trích xuất thông tin tài khoản thất bại`,
+      });
+    },
   });
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
@@ -47,19 +54,22 @@ export default function FormSearch() {
   }, [accountStore.page]);
 
   return (
-    <Form onFinish={onFinish} autoComplete="off" layout="inline">
-      <Form.Item<FieldType>
-        name="searchToken"
-        rules={[{ required: true, message: "Trường bắt buộc" }]}
-      >
-        <Input placeholder="Nhập SĐT/CCCD/CMT" type="number" />
-      </Form.Item>
+    <div>
+      {contextHolder}
+      <Form onFinish={onFinish} autoComplete="off" layout="inline">
+        <Form.Item<FieldType>
+          name="searchToken"
+          rules={[{ required: true, message: "Trường bắt buộc" }]}
+        >
+          <Input placeholder="Nhập SĐT/CCCD/CMT" type="number" />
+        </Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" ref={submitBtn}>
-          Trích xuất
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" ref={submitBtn}>
+            Trích xuất
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 }

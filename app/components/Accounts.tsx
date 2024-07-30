@@ -74,7 +74,7 @@ export default function Accounts() {
       align: "center",
       render: (data) => (
         <div className="flex justify-center items-center">
-          <Tag color="lime">{data?.bank?.name}</Tag>
+          <Tag color="blue">{data?.bank?.name}</Tag>
         </div>
       ),
     },
@@ -90,6 +90,10 @@ export default function Accounts() {
             transactionMutation.mutate({
               accountDigit: profile.accountDigit,
               page: 1,
+            });
+            api.info({
+              message: null,
+              description: `Truy xuất thông tin giao dịch thành công`,
             });
           }}
         >
@@ -110,6 +114,7 @@ export default function Accounts() {
 
   return (
     <div className="border p-4">
+      {contextHolder}
       <Table
         loading={accountStore.loading}
         columns={columns}
