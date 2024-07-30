@@ -38,7 +38,7 @@ export default function FormSearch() {
       accountStore.setLoading(false);
     },
     onError() {
-      api.info({
+      api.error({
         message: null,
         description: `Trích xuất thông tin tài khoản thất bại`,
       });
