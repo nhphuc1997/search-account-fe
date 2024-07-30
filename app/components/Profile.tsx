@@ -1,6 +1,7 @@
 import {
   Col,
   Descriptions,
+  Pagination,
   Row,
   Table,
   TableColumnsType,
@@ -67,10 +68,8 @@ export default function Profile() {
 
       <div className="py-3 w-full">
         <Row gutter={8}>
-          <Col xs={24} xl={18} className="py-3">
-            <Typography.Paragraph
-              className="!my-0 p-4 border h-[80px]"
-            >
+          <Col xs={24} xl={18} className="">
+            <Typography.Paragraph className="!my-0 p-4 border h-[80px]">
               Số dư của các tài khoản trên bảng tra cứu có thể chênh lệch với số
               tiền thực tế mà các tài khoản đã thực hiện với tài khoản đang khoá
             </Typography.Paragraph>
@@ -100,6 +99,10 @@ export default function Profile() {
           scroll={{ y: 300 }}
           bordered
         />
+
+        <div className="pt-3">
+          <Pagination align="center" defaultCurrent={1} total={50} />
+        </div>
       </div>
     </div>
   );
