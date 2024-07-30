@@ -23,7 +23,7 @@ export default function Home() {
       <Content className="px-5 md:px-40 py-4">
         <div className="min-h-dvh p-4 bg-white">
           <Row>
-            <Col xs={24} md={8}>
+            <Col xs={24} lg={12}>
               <FormSearch />
             </Col>
           </Row>

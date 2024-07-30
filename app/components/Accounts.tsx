@@ -1,12 +1,5 @@
-import {
-  Button,
-  Descriptions,
-  Divider,
-  Pagination,
-  Table,
-  TableColumnsType,
-  Typography,
-} from "antd";
+import { useAccountStore } from "@/stores/account.store";
+import { Button, Pagination, Table, TableColumnsType, Tag } from "antd";
 
 interface DataType {
   key: React.Key;
@@ -18,17 +11,30 @@ interface DataType {
 const columns: TableColumnsType<DataType> = [
   {
     title: "SĐT",
-    dataIndex: "name",
+    dataIndex: "phoneNumber",
     width: 150,
   },
   {
     title: "CCCD/CMT",
-    dataIndex: "age",
+    dataIndex: "idCard",
     width: 150,
   },
   {
     title: "Tên tài khoản",
-    dataIndex: "address",
+    dataIndex: "accountName",
+  },
+  {
+    title: "Số tài khoản",
+    dataIndex: "accountDigit",
+  },
+  {
+    title: "Ngân hàng",
+    align: "center",
+    render: (data) => (
+      <div className="flex justify-center items-center">
+        <Tag color="lime">{data?.bank?.name}</Tag>
+      </div>
+    ),
   },
   {
     title: "",
@@ -41,29 +47,26 @@ const columns: TableColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [];
-for (let i = 0; i < 4; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
-
 export default function Accounts() {
+  const accountStore = useAccountStore((state: any) => state);
+
   return (
     <div className="border p-4">
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={accountStore?.accounts}
         pagination={false}
         scroll={{ y: 300 }}
         bordered
       />
 
       <div className="pt-3">
-        <Pagination align="center" defaultCurrent={1} total={50} />
+        <Pagination
+          align="center"
+          total={accountStore?.total}
+          pageSize={5}
+          onChange={(page) => accountStore.setPage(page)}
+        />
       </div>
     </div>
   );

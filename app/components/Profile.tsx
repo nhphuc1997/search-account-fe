@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import {
   Col,
   Descriptions,
@@ -44,6 +45,7 @@ for (let i = 0; i < 100; i++) {
 }
 
 export default function Profile() {
+
   return (
     <div className="p-4 border">
       <div className="py-3">
