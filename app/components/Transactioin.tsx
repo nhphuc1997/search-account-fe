@@ -1,6 +1,7 @@
 import { useProfileStore } from "@/stores/profile.store";
 import { useTransactionsStore } from "@/stores/transaction.store";
 import { doGet } from "@/utils/doMethod";
+import { formatCurrency } from "@/utils/format";
 import { useMutation } from "@tanstack/react-query";
 import {
   Col,
@@ -45,6 +46,9 @@ const columns: TableColumnsType<DataType> = [
     title: "Số tiền giao dịch",
     dataIndex: "amount",
     align: "center",
+    render: (data) => {
+      return <Typography.Text>{formatCurrency(data)}</Typography.Text>;
+    },
   },
   {
     title: "Tình trạng",
@@ -102,7 +106,7 @@ export default function Profile() {
                 Số dư tạm khoá
               </Typography.Paragraph>
               <Typography.Title level={5} className="!my-1">
-                {profileStore.profile?.amountLocked}
+                {formatCurrency(profileStore.profile?.amountLocked)}
               </Typography.Title>
             </div>
           </Col>
