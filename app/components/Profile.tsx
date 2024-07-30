@@ -1,4 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
+import { useProfileStore } from "@/stores/profile.store";
+import { useTransactionsStore } from "@/stores/transaction.store";
 import {
   Col,
   Descriptions,
@@ -19,32 +20,54 @@ interface DataType {
 
 const columns: TableColumnsType<DataType> = [
   {
-    title: "Name",
-    dataIndex: "name",
+    title: "Tên tài khoản",
     width: 150,
+    render: (data) => {
+      return (
+        <div>
+          <Typography.Text>
+            {data?.retrieverAccount?.accountName}
+          </Typography.Text>
+        </div>
+      );
+    },
   },
   {
-    title: "Age",
-    dataIndex: "age",
+    title: "Số tài khoản",
     width: 150,
+    render: (data) => {
+      return (
+        <div>
+          <Typography.Text>
+            {data?.retrieverAccount?.accountDigit}
+          </Typography.Text>
+        </div>
+      );
+    },
   },
   {
-    title: "Address",
-    dataIndex: "address",
+    title: "Số tiền giao dịch",
+    dataIndex: "amount",
+  },
+  {
+    title: "Tình trạng",
+    dataIndex: "status",
+    align: "center",
+    render: (data) => {
+      if (data === "Bảo lưu") {
+        return <Tag color="lime">{data}</Tag>;
+      }
+      if (data === "Đang xử lí") {
+        return <Tag color="gold">{data}</Tag>;
+      }
+      return <Tag color="success">{data}</Tag>;
+    },
   },
 ];
 
-const data: DataType[] = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
-
 export default function Profile() {
+  const profileStore = useProfileStore((state: any) => state);
+  const transactionStore = useTransactionsStore((state: any) => state);
 
   return (
     <div className="p-4 border">
@@ -57,13 +80,13 @@ export default function Profile() {
       <div className="py-3">
         <Descriptions title="">
           <Descriptions.Item label="Số tài khoản">
-            <Tag color="blue">1900876547890</Tag>
+            <Tag color="blue">{profileStore.profile?.accountDigit}</Tag>
           </Descriptions.Item>
           <Descriptions.Item label="Chủ tài khoản">
-            <Tag color="blue">CTY TNHH</Tag>
+            <Tag color="blue">{profileStore.profile?.accountName}</Tag>
           </Descriptions.Item>
           <Descriptions.Item label="Ngân hàng">
-            <Tag color="blue">MSB</Tag>
+            <Tag color="blue">{profileStore.profile?.bank?.name}</Tag>
           </Descriptions.Item>
         </Descriptions>
       </div>
@@ -82,7 +105,7 @@ export default function Profile() {
                 Số dư tạm khoá
               </Typography.Paragraph>
               <Typography.Title level={5} className="!my-1">
-                90000000 vnd
+                {profileStore.profile?.amountLocked}
               </Typography.Title>
             </div>
           </Col>
@@ -96,7 +119,7 @@ export default function Profile() {
       <div className="py-3">
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={transactionStore.transactions?.data}
           pagination={false}
           scroll={{ y: 300 }}
           bordered

@@ -2,6 +2,7 @@ import { useAccountStore } from "@/stores/account.store";
 import { doGet } from "@/utils/doMethod";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Form, FormProps, Input } from "antd";
+import { useEffect, useRef } from "react";
 
 type FieldType = {
   searchToken?: string;
@@ -9,8 +10,7 @@ type FieldType = {
 
 export default function FormSearch() {
   const accountStore = useAccountStore((state: any) => state);
-
-  console.log(accountStore.page, "accountStore");
+  const submitBtn = useRef<any>(null);
 
   const accountMutation = useMutation({
     mutationKey: ["account-muation", [accountStore.page]],
@@ -40,6 +40,10 @@ export default function FormSearch() {
     accountMutation.mutate(values);
   };
 
+  useEffect(() => {
+    submitBtn?.current.click();
+  }, [accountStore.page]);
+
   return (
     <Form onFinish={onFinish} autoComplete="off" layout="inline">
       <Form.Item<FieldType>
@@ -50,7 +54,7 @@ export default function FormSearch() {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" ref={submitBtn}>
           Trích xuất
         </Button>
       </Form.Item>
