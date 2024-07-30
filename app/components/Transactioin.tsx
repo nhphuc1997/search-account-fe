@@ -23,26 +23,20 @@ interface DataType {
 const columns: TableColumnsType<DataType> = [
   {
     title: "Tên tài khoản",
-    width: 150,
     render: (data) => {
       return (
         <div>
-          <Typography.Text>
-            {data?.retrieverAccount?.accountName}
-          </Typography.Text>
+          <Typography.Text>{data?.senderAccount?.accountName}</Typography.Text>
         </div>
       );
     },
   },
   {
     title: "Số tài khoản",
-    width: 150,
     render: (data) => {
       return (
         <div>
-          <Typography.Text>
-            {data?.retrieverAccount?.accountDigit}
-          </Typography.Text>
+          <Typography.Text>{data?.senderAccount?.accountDigit}</Typography.Text>
         </div>
       );
     },
@@ -50,6 +44,7 @@ const columns: TableColumnsType<DataType> = [
   {
     title: "Số tiền giao dịch",
     dataIndex: "amount",
+    align: "center",
   },
   {
     title: "Tình trạng",
@@ -124,7 +119,7 @@ export default function Profile() {
           columns={columns}
           dataSource={transactionStore.transactions?.data}
           pagination={false}
-          scroll={{ y: 300 }}
+          scroll={{ y: 300, x: 800 }}
           bordered
         />
 

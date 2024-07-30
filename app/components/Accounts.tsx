@@ -3,7 +3,14 @@ import { useProfileStore } from "@/stores/profile.store";
 import { useTransactionsStore } from "@/stores/transaction.store";
 import { doGet } from "@/utils/doMethod";
 import { useMutation } from "@tanstack/react-query";
-import { Button, Pagination, Table, TableColumnsType, Tag } from "antd";
+import {
+  Button,
+  notification,
+  Pagination,
+  Table,
+  TableColumnsType,
+  Tag,
+} from "antd";
 import { useEffect, useRef, useState } from "react";
 
 interface DataType {
@@ -14,6 +21,8 @@ interface DataType {
 }
 
 export default function Accounts() {
+  const [api, contextHolder] = notification.useNotification();
+
   const accountStore = useAccountStore((state: any) => state);
   const profileStore = useProfileStore((state: any) => state);
   const transactionStore = useTransactionsStore((state: any) => state);
@@ -47,12 +56,10 @@ export default function Accounts() {
     {
       title: "SĐT",
       dataIndex: "phoneNumber",
-      width: 150,
     },
     {
       title: "CCCD/CMT",
       dataIndex: "idCard",
-      width: 150,
     },
     {
       title: "Tên tài khoản",
@@ -82,7 +89,7 @@ export default function Accounts() {
             profileStore.setProfile(profile);
             transactionMutation.mutate({
               accountDigit: profile.accountDigit,
-              page: transactionStore.page,
+              page: 1,
             });
           }}
         >
@@ -92,6 +99,15 @@ export default function Accounts() {
     },
   ];
 
+  useEffect(() => {
+    if (profileStore.profile?.accountDigit) {
+      transactionMutation.mutate({
+        accountDigit: profileStore.profile?.accountDigit,
+        page: transactionStore.page,
+      });
+    }
+  }, [transactionStore.page]);
+
   return (
     <div className="border p-4">
       <Table
@@ -99,7 +115,7 @@ export default function Accounts() {
         columns={columns}
         dataSource={accountStore?.accounts}
         pagination={false}
-        scroll={{ y: 300 }}
+        scroll={{ y: 300, x: 800 }}
         bordered
       />
 
