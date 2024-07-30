@@ -67,13 +67,15 @@ export default function Profile() {
 
       <div className="py-3 w-full">
         <Row gutter={8}>
-          <Col xs={24} md={18}>
-            <Typography.Paragraph className="!my-0 p-4 border h-[80px]">
+          <Col xs={24} xl={18} className="py-3">
+            <Typography.Paragraph
+              className="!my-0 p-4 border h-[80px]"
+            >
               Số dư của các tài khoản trên bảng tra cứu có thể chênh lệch với số
               tiền thực tế mà các tài khoản đã thực hiện với tài khoản đang khoá
             </Typography.Paragraph>
           </Col>
-          <Col xs={24} md={6}>
+          <Col xs={24} xl={6}>
             <div className="p-4 border h-[80px] flex flex-col justify-center items-center">
               <Typography.Paragraph className="!my-1">
                 Số dư tạm khoá
