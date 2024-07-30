@@ -21,17 +21,17 @@ export default function Accounts() {
   const retrieveBtn = useRef<any>(null);
 
   const transactionMutation = useMutation({
-    mutationKey: ["transaction-history", [transactionStore.page]],
-    mutationFn: async (accountDigit: string) => {
+    mutationKey: ["transaction-history"],
+    mutationFn: async (payload: any) => {
       transactionStore.setLoading(true);
       const $filter = {
-        "retrieverAccount.accountDigit": accountDigit,
+        "retrieverAccount.accountDigit": payload.accountDigit,
       };
 
       const params = {
         s: JSON.stringify($filter),
         limit: 5,
-        page: transactionStore.page,
+        page: payload.page,
       };
       return await doGet("/transaction-history", params);
     },
@@ -80,7 +80,10 @@ export default function Accounts() {
           className="flex justify-center items-center"
           onClick={() => {
             profileStore.setProfile(profile);
-            transactionMutation.mutate(profile.accountDigit);
+            transactionMutation.mutate({
+              accountDigit: profile.accountDigit,
+              page: transactionStore.page,
+            });
           }}
         >
           <Button iconPosition={"end"}>Truy xuất</Button>
@@ -88,10 +91,6 @@ export default function Accounts() {
       ),
     },
   ];
-
-  // useEffect(() => {
-  //   transactionMutation.mutate(profileStore.profile?.accountDigit);
-  // }, [transactionStore.page]);
 
   return (
     <div className="border p-4">
