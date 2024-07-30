@@ -11,7 +11,7 @@ import {
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import FormSearch from "./components/FormSearch";
 import Accounts from "./components/Accounts";
-import Profile from "./components/Profile";
+import Profile from "./components/Transactioin";
 
 export default function Home() {
   return (

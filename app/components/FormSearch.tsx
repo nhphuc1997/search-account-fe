@@ -15,6 +15,7 @@ export default function FormSearch() {
   const accountMutation = useMutation({
     mutationKey: ["account-muation", [accountStore.page]],
     mutationFn: async (values: FieldType) => {
+      accountStore.setLoading(true);
       const $filter = {
         $or: [
           { phoneNumber: { $cont: values?.searchToken } },
@@ -33,6 +34,7 @@ export default function FormSearch() {
       accountStore.setAccounts(data?.data?.data);
       accountStore.setTotal(data?.data?.total);
       accountStore.setPage(data?.data?.page);
+      accountStore.setLoading(false);
     },
   });
 
@@ -41,7 +43,7 @@ export default function FormSearch() {
   };
 
   useEffect(() => {
-    submitBtn?.current.click();
+    submitBtn?.current?.click();
   }, [accountStore.page]);
 
   return (

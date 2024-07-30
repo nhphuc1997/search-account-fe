@@ -1,5 +1,7 @@
 import { useProfileStore } from "@/stores/profile.store";
 import { useTransactionsStore } from "@/stores/transaction.store";
+import { doGet } from "@/utils/doMethod";
+import { useMutation } from "@tanstack/react-query";
 import {
   Col,
   Descriptions,
@@ -118,6 +120,7 @@ export default function Profile() {
 
       <div className="py-3">
         <Table
+          loading={transactionStore.loading}
           columns={columns}
           dataSource={transactionStore.transactions?.data}
           pagination={false}
@@ -126,7 +129,12 @@ export default function Profile() {
         />
 
         <div className="pt-3">
-          <Pagination align="center" defaultCurrent={1} total={50} />
+          <Pagination
+            align="center"
+            total={transactionStore?.total}
+            pageSize={5}
+            onChange={(page) => transactionStore.setPage(page)}
+          />
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useTransactionsStore } from "@/stores/transaction.store";
 import { doGet } from "@/utils/doMethod";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Pagination, Table, TableColumnsType, Tag } from "antd";
+import { useEffect, useRef, useState } from "react";
 
 interface DataType {
   key: React.Key;
@@ -17,18 +18,28 @@ export default function Accounts() {
   const profileStore = useProfileStore((state: any) => state);
   const transactionStore = useTransactionsStore((state: any) => state);
 
+  const retrieveBtn = useRef<any>(null);
+
   const transactionMutation = useMutation({
-    mutationKey: ["transaction-history"],
+    mutationKey: ["transaction-history", [transactionStore.page]],
     mutationFn: async (accountDigit: string) => {
+      transactionStore.setLoading(true);
       const $filter = {
-        "senderAccount.accountDigit": accountDigit,
+        "retrieverAccount.accountDigit": accountDigit,
       };
 
-      const params = { s: JSON.stringify($filter), limit: 5, page: 1 };
-      return doGet("/transaction-history", params);
+      const params = {
+        s: JSON.stringify($filter),
+        limit: 5,
+        page: transactionStore.page,
+      };
+      return await doGet("/transaction-history", params);
     },
-    onSuccess(data, variables, context) {
+    onSuccess(data) {
       transactionStore.setTransactions(data?.data);
+      transactionStore.setTotal(data?.data?.total);
+      transactionStore.setPage(data?.data?.page);
+      transactionStore.setLoading(false);
     },
   });
 
@@ -65,6 +76,7 @@ export default function Accounts() {
       align: "center",
       render: (profile) => (
         <div
+          ref={retrieveBtn}
           className="flex justify-center items-center"
           onClick={() => {
             profileStore.setProfile(profile);
@@ -77,9 +89,14 @@ export default function Accounts() {
     },
   ];
 
+  // useEffect(() => {
+  //   transactionMutation.mutate(profileStore.profile?.accountDigit);
+  // }, [transactionStore.page]);
+
   return (
     <div className="border p-4">
       <Table
+        loading={accountStore.loading}
         columns={columns}
         dataSource={accountStore?.accounts}
         pagination={false}
