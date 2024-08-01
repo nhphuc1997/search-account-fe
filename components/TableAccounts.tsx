@@ -1,6 +1,7 @@
 import { useAccountStore } from "@/stores/account.store";
 import { SearchOutlined } from "@ant-design/icons";
 import { Button, Col, Row, Table, TableProps, Tag, Typography } from "antd";
+import { useRouter } from "next/navigation";
 
 interface DataType {
   key: string;
@@ -12,6 +13,7 @@ interface DataType {
 
 export default function TableAccount() {
   const accountStore = useAccountStore((state: any) => state);
+  const router = useRouter();
 
   const columns: TableProps<DataType>["columns"] = [
     {
@@ -46,17 +48,22 @@ export default function TableAccount() {
     {
       title: "",
       align: "center",
-      render() {
+      key: "action",
+      render(value) {
         return (
-          <Button icon={<SearchOutlined />} iconPosition="end">
+          <Button
+            icon={<SearchOutlined />}
+            iconPosition="end"
+            onClick={() =>
+              router.push(`/search?accountDigit=${value?.accountDigit}`)
+            }
+          >
             Truy xuất
           </Button>
         );
       },
     },
   ];
-
-  console.log(accountStore.accounts, "accountStore");
 
   return (
     <div className="py-3">
