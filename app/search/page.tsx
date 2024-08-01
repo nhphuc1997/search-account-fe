@@ -142,7 +142,6 @@ export default function SearchPage() {
           open={confirmTransaction}
           onCancel={() => setConfirmTransaction(false)}
           footer={[
-            <Button onClick={() => setConfirmTransaction(false)}>Huỷ</Button>,
             <Button
               key="submit"
               type="primary"
