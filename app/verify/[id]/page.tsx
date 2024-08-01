@@ -12,10 +12,11 @@ export default function VerifyDetailPage() {
 
       <div className="py-3">
         <Row>
-          <Col span={4} />
-          <Col span={16}>
+          <Col xs={24} lg={4} />
+          <Col xs={24} lg={16}>
             <FormVerifyCode />
           </Col>
+          <Col xs={24} lg={4} />
         </Row>
       </div>
     </div>
