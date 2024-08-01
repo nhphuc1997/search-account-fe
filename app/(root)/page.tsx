@@ -4,6 +4,7 @@ import { FileSearchOutlined } from "@ant-design/icons";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Form, Input, notification } from "antd";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type FormType = {
   idCard: string;
@@ -14,10 +15,12 @@ type FormType = {
 export default function IndexPage() {
   const router = useRouter();
   const [api, context] = notification.useNotification();
+  const [btnLoading, setBtnLoading] = useState<boolean>(false);
 
   const accountMutation = useMutation({
     mutationKey: ["account"],
     mutationFn: async (payload: FormType) => {
+      setBtnLoading(true);
       const $filter = {
         fullName: payload.fullName,
         idCard: payload.idCard,
@@ -32,6 +35,15 @@ export default function IndexPage() {
         message: null,
         description: "Truy xuất thông tin tài khoản thành công",
       });
+    },
+    onError: () => {
+      api.error({
+        message: null,
+        description: "Truy xuất thông tin tài khoản thất bại",
+      });
+    },
+    onSettled: () => {
+      setBtnLoading(false);
     },
   });
 
@@ -107,6 +119,7 @@ export default function IndexPage() {
               type="primary"
               htmlType="submit"
               className="w-[250px]"
+              loading={btnLoading}
             >
               Tra cứu
             </Button>
