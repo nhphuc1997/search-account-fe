@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
-import Wrapper from "./components/Wrapper";
+import Wrapper from "../components/Wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
