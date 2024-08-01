@@ -1,17 +1,7 @@
 "use client";
-import {
-  Layout,
-  Typography,
-  Tabs,
-  Row,
-  Col,
-  Descriptions,
-  Divider,
-} from "antd";
+import { Col, Form, Input, Layout, Row, Typography } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import FormSearch from "./components/FormSearch";
-import Accounts from "./components/Accounts";
-import Profile from "./components/Transactioin";
 
 export default function Home() {
   return (
@@ -21,31 +11,13 @@ export default function Home() {
       </Header>
 
       <Content className="px-5 md:px-40 py-4">
-        <div className="min-h-dvh p-4 bg-white">
+        <div className="min-h-dvh bg-white p-10">
           <Row>
+            <Col span={6} />
             <Col xs={24} lg={12}>
               <FormSearch />
             </Col>
-          </Row>
-
-          <Row>
-            <Col span={24}>
-              <Divider orientation="left">Danh sách tài khoản</Divider>
-            </Col>
-
-            <Col span={24}>
-              <Accounts />
-            </Col>
-          </Row>
-
-          <Row className="pt-6">
-            <Col span={24}>
-              <Divider orientation="left">Thông tin hồ sơ</Divider>
-            </Col>
-
-            <Col span={24}>
-              <Profile />
-            </Col>
+            <Col span={6} />
           </Row>
         </div>
       </Content>

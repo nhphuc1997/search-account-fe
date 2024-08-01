@@ -1,73 +1,64 @@
-import { useAccountStore } from "@/stores/account.store";
-import { doGet } from "@/utils/doMethod";
-import { useMutation } from "@tanstack/react-query";
-import { Button, Form, FormProps, Input, notification } from "antd";
-import { useEffect, useRef } from "react";
-
-type FieldType = {
-  searchToken?: string;
-};
+import { FileSearchOutlined } from "@ant-design/icons";
+import { Button, Form, Input, InputNumber } from "antd";
 
 export default function FormSearch() {
-  const accountStore = useAccountStore((state: any) => state);
-  const submitBtn = useRef<any>(null);
-  const [api, contextHolder] = notification.useNotification();
-
-  const accountMutation = useMutation({
-    mutationKey: ["account-muation", [accountStore.page]],
-    mutationFn: async (values: FieldType) => {
-      accountStore.setLoading(true);
-      const $filter = {
-        $or: [
-          { phoneNumber: { $cont: values?.searchToken } },
-          { idCard: { $cont: values?.searchToken } },
-          { accountDigit: { $cont: values?.searchToken } },
-        ],
-      };
-      const params = {
-        s: JSON.stringify($filter),
-        limit: 5,
-        page: accountStore.page,
-      };
-      return await doGet("/account", params);
-    },
-    onSuccess(data) {
-      accountStore.setAccounts(data?.data?.data);
-      accountStore.setTotal(data?.data?.total);
-      accountStore.setPage(data?.data?.page);
-      accountStore.setLoading(false);
-    },
-    onError() {
-      api.error({
-        message: null,
-        description: `Trích xuất thông tin tài khoản thất bại`,
-      });
-    },
-  });
-
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    accountMutation.mutate(values);
-  };
-
-  useEffect(() => {
-    submitBtn?.current?.click();
-  }, [accountStore.page]);
-
   return (
-    <div>
-      {contextHolder}
-      <Form onFinish={onFinish} autoComplete="off" layout="inline">
-        <Form.Item<FieldType>
-          name="searchToken"
-          rules={[{ required: true, message: "Trường bắt buộc" }]}
+    <div className="p-4 border">
+      <Form name="trigger" layout="vertical" autoComplete="off">
+        <Form.Item label="Họ tên" name="fullName" rules={[{ required: true }]}>
+          <Input placeholder="Nguyễn Văn A" />
+        </Form.Item>
+
+        <Form.Item
+          hasFeedback
+          label="Số căn cước công dân"
+          name="CCCD"
+          validateDebounce={1000}
+          rules={[
+            {
+              len: 12,
+              message: "Số căn cước không đúng định dạng",
+              required: true,
+            },
+          ]}
         >
-          <Input placeholder="Nhập SĐT/CCCD/CMT" type="number" />
+          <Input placeholder="036093002023" />
+        </Form.Item>
+
+        <Form.Item
+          hasFeedback
+          label="Số điện thoại"
+          name="SĐT"
+          validateDebounce={1000}
+          rules={[
+            {
+              len: 10,
+              message: "SĐT không đúng định dạng",
+              required: true,
+              validator(rule, value, callback) {
+                if (typeof value === "string" || !value) {
+                  return Promise.reject();
+                }
+                return Promise.resolve();
+              },
+            },
+          ]}
+        >
+          <InputNumber className="!w-full" placeholder="0978764356" />
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" ref={submitBtn}>
-            Trích xuất
-          </Button>
+          <div className="flex justify-center items-center">
+            <Button
+              icon={<FileSearchOutlined />}
+              iconPosition="end"
+              type="primary"
+              htmlType="submit"
+              className="w-[250px]"
+            >
+              Tra cứu
+            </Button>
+          </div>
         </Form.Item>
       </Form>
     </div>
