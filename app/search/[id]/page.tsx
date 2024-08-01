@@ -1,7 +1,7 @@
 "use client";
 import { doGet, doPost } from "@/utils/doMethod";
 import { formatCurrency } from "@/utils/format";
-import { FileProtectOutlined } from "@ant-design/icons";
+import { FileProtectOutlined, WarningOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   Button,
@@ -18,22 +18,18 @@ import {
   Tag,
   Typography,
 } from "antd";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 export default function SearchPage() {
   const param = useParams();
-  const submitBtn = useRef<any>(null);
-  const [api, context] = notification.useNotification();
-  const [formVerifyCode] = Form.useForm();
-  const [modalVerifyCode, setModalVerifyCode] = useState<boolean>(false);
+  const router = useRouter();
 
   const [account, setAccount] = useState<any>(null);
   const [transactions, setTransactions] = useState<any>([]);
   const [transactionsTotal, setTransactionsTotal] = useState<number>(0);
   const [transactionsPage, setTransactionsPage] = useState<number>(1);
   const [tranLoading, setTranLoading] = useState<boolean>(false);
-  const [verifyLoading, setVerifyLoading] = useState<boolean>(false);
   const [warningContent, setwarningContent] = useState<any>(null);
 
   useQuery({
@@ -88,36 +84,6 @@ export default function SearchPage() {
     },
   });
 
-  const verifyCodeMutation = useMutation({
-    mutationKey: ["verify-code"],
-    mutationFn: async (payload: any) => {
-      setVerifyLoading(true);
-      const body = {
-        code: payload?.code,
-        accountId: Number(param.id),
-      };
-      return await doPost("/verify-code", body);
-    },
-    onSuccess(data, variables, context) {
-      if (data?.statusCode === 200) {
-        api.success({
-          message: null,
-          description: "Xác minh giao dịch thành công",
-        });
-        setModalVerifyCode(false);
-        formVerifyCode.resetFields();
-      }
-      setVerifyLoading(false);
-    },
-    onError: () => {
-      api.error({
-        message: null,
-        description: "Xác minh giao dịch thất bại",
-      });
-      setVerifyLoading(false);
-    },
-  });
-
   const columns: TableProps["columns"] = [
     {
       title: "Tên tài khoản",
@@ -163,17 +129,12 @@ export default function SearchPage() {
     }[status];
   };
 
-  const onFinishVerifyCode = (values: any) => {
-    verifyCodeMutation.mutate(values);
-  };
-
   return (
     <div>
-      {context}
       <div className="py-3">
         <Descriptions
           title="Thông tin tài khoản"
-          column={{ xs: 1, md: 1, lg: 3 }}
+          column={{ xs: 1, md: 1, lg: 1, xl: 3 }}
         >
           <Descriptions.Item label="Tên chủ TK">
             {account?.accountName}
@@ -193,11 +154,18 @@ export default function SearchPage() {
         </Descriptions>
       </div>
 
-      <div className="py-3 ">
-        <div
-          className="p-4 border rounded-lg bg-red-500 text-yellow-300"
-          dangerouslySetInnerHTML={{ __html: warningContent }}
-        />
+      <div className="py-3 w-full flex flex-col md:flex-row items-center p-4 border rounded-lg bg-red-500">
+        <div className="w-full md:w-1/4 lg:w-1/6 text-center text-white font-semibold">
+          <div className="flex justify-center items-center">
+            <WarningOutlined />
+            <Typography.Text className="ml-2 !text-white">
+              Cảnh báo
+            </Typography.Text>
+          </div>
+        </div>
+        <div className="w-full md:w-3/4 lg:w-5/6 text-white text-pretty">
+          {warningContent}
+        </div>
       </div>
 
       <div className="py-3">
@@ -213,7 +181,9 @@ export default function SearchPage() {
               type="primary"
               icon={<FileProtectOutlined />}
               iconPosition="end"
-              onClick={() => setModalVerifyCode(true)}
+              onClick={() => {
+                router.push(`verify/${param.id}`);
+              }}
             >
               Xác minh giao dịch
             </Button>
@@ -245,7 +215,7 @@ export default function SearchPage() {
           </Col>
         </Row>
 
-        <Modal
+        {/* <Modal
           title="Xác minh giao dịch"
           open={modalVerifyCode}
           onCancel={() => setModalVerifyCode(false)}
@@ -283,7 +253,7 @@ export default function SearchPage() {
               />
             </Form>
           </div>
-        </Modal>
+        </Modal> */}
       </div>
     </div>
   );
