@@ -1,6 +1,8 @@
 "use client";
+import { doGet } from "@/utils/doMethod";
 import { FileSearchOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { useMutation } from "@tanstack/react-query";
+import { Button, Form, Input, notification } from "antd";
 import { useRouter } from "next/navigation";
 
 type FormType = {
@@ -11,13 +13,35 @@ type FormType = {
 
 export default function IndexPage() {
   const router = useRouter();
+  const [api, context] = notification.useNotification();
+
+  const accountMutation = useMutation({
+    mutationKey: ["account"],
+    mutationFn: async (payload: FormType) => {
+      const $filter = {
+        fullName: payload.fullName,
+        idCard: payload.idCard,
+        phoneNumber: payload.phoneNumber,
+      };
+      const params = { s: JSON.stringify($filter) };
+
+      return await doGet("/account", params);
+    },
+    onSuccess: () => {
+      api.info({
+        message: null,
+        description: "Truy xuất thông tin tài khoản thành công",
+      });
+    },
+  });
 
   const onFinishForm = (data: FormType) => {
-    router.push("/search?");
+    accountMutation.mutate(data);
   };
 
   return (
     <div className="p-6 border">
+      {context}
       <Form
         name="trigger"
         layout="vertical"
@@ -60,7 +84,11 @@ export default function IndexPage() {
               message: "SĐT không đúng định dạng",
               required: true,
               validator(rule, value, callback) {
-                if (typeof value === "string" || !value) {
+                if (
+                  !/^-?\d*\.?\d*$/.test(value) ||
+                  !value ||
+                  value.length !== 10
+                ) {
                   return Promise.reject();
                 }
                 return Promise.resolve();
