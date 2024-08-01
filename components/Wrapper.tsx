@@ -17,7 +17,7 @@ export default function Wrapper({
           style={{ backgroundImage: `url(${BgBanner})` }}
         >
           <Typography.Title level={5} className="!text-red-600 uppercase">
-            Cổng thông tin kho bạc nhà nước
+            CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
           </Typography.Title>
         </Header>
 

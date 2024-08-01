@@ -133,7 +133,7 @@ export default function SearchPage() {
       title: "Ngân hàng",
       key: "senderBank",
       render(value, record, index) {
-        return <Tag color="blue">{value?.senderBank?.name}</Tag>;
+        return value?.senderBank?.name;
       },
     },
     {
@@ -182,7 +182,7 @@ export default function SearchPage() {
             {account?.accountDigit}
           </Descriptions.Item>
           <Descriptions.Item label="Ngân hàng">
-            <Tag color="blue">{account?.bank?.name}</Tag>
+            {account?.bank?.name}
           </Descriptions.Item>
           <Descriptions.Item label="Số dư TK tạm khoá">
             {formatCurrency(account?.amountLocked)}
@@ -195,7 +195,7 @@ export default function SearchPage() {
 
       <div className="py-3 ">
         <div
-          className="p-4 border bg-red-500 text-yellow-300"
+          className="p-4 border rounded-lg bg-red-500 text-yellow-300"
           dangerouslySetInnerHTML={{ __html: warningContent }}
         />
       </div>

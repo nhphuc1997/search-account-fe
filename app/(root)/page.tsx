@@ -5,7 +5,7 @@ import TableAccount from "@/components/TableAccounts";
 export default function IndexPage() {
   return (
     <div>
-      <div className="p-6 border">
+      <div className="p-6 border rounded-lg">
         <FormSearch />
       </div>
 
