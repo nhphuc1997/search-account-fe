@@ -10,3 +10,8 @@ export const doGet = async (url: string, params?: any) => {
   const response = await instance.get(url, { params: params })
   return response?.data
 }
+
+export const doPost = async (url: string, body: any) => {
+  const response = await instance.post(url, body)
+  return response?.data
+}

@@ -54,9 +54,7 @@ export default function TableAccount() {
           <Button
             icon={<SearchOutlined />}
             iconPosition="end"
-            onClick={() =>
-              router.push(`/search?accountDigit=${value?.accountDigit}`)
-            }
+            onClick={() => router.push(`/search/${value?.id}`)}
           >
             Truy xuất
           </Button>
