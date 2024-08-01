@@ -18,11 +18,11 @@ export default function Wrapper({
         <Content className="px-5 md:px-40 py-4">
           <div className="min-h-dvh bg-white p-10">
             <Row>
-              <Col span={3} />
-              <Col xs={24} lg={18}>
+              <Col span={2} />
+              <Col xs={24} lg={20}>
                 {children}
               </Col>
-              <Col span={3} />
+              <Col span={2} />
             </Row>
           </div>
         </Content>
