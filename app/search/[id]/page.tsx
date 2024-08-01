@@ -148,6 +148,7 @@ export default function SearchPage() {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
+      align: "center",
       render(value, record, index) {
         return <Tag color={`${getTagColor(value)}`}>{value}</Tag>;
       },
