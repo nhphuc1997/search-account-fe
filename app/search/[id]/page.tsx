@@ -27,12 +27,14 @@ export default function SearchPage() {
   const [api, context] = notification.useNotification();
   const [formVerifyCode] = Form.useForm();
   const [modalVerifyCode, setModalVerifyCode] = useState<boolean>(false);
+
   const [account, setAccount] = useState<any>(null);
   const [transactions, setTransactions] = useState<any>([]);
   const [transactionsTotal, setTransactionsTotal] = useState<number>(0);
   const [transactionsPage, setTransactionsPage] = useState<number>(1);
   const [tranLoading, setTranLoading] = useState<boolean>(false);
   const [verifyLoading, setVerifyLoading] = useState<boolean>(false);
+  const [warningContent, setwarningContent] = useState<any>(null);
 
   useQuery({
     queryKey: ["get-infor", [param.id]],
@@ -68,6 +70,21 @@ export default function SearchPage() {
       }
       setTranLoading(false);
       return false;
+    },
+  });
+
+  useQuery({
+    queryKey: ["get-warning"],
+    queryFn: async () => {
+      const response = await doGet("/warning", {
+        sort: "id,DESC",
+        limit: 1,
+        page: 1,
+      });
+      if (response?.statusCode === 200) {
+        setwarningContent(response?.data?.data[0]?.content);
+        return;
+      }
     },
   });
 
@@ -170,20 +187,16 @@ export default function SearchPage() {
             {formatCurrency(account?.amountLocked)}
           </Descriptions.Item>
           <Descriptions.Item label="Trạng thái">
-            <Tag color="blue">{account?.status}</Tag>
+            {account?.status}
           </Descriptions.Item>
         </Descriptions>
       </div>
 
-      <div className="py-3">
-        <div className="p-4 border ">
-          <Typography.Text className="!mb-0 white">
-            In the process of internal desktop applications development, many
-            different design specs and implementations would be involved, which
-            might cause designers and developers difficulties and duplication
-            and reduce the efficiency of development
-          </Typography.Text>
-        </div>
+      <div className="py-3 ">
+        <div
+          className="p-4 border bg-red-500 text-yellow-300"
+          dangerouslySetInnerHTML={{ __html: warningContent }}
+        />
       </div>
 
       <div className="py-3">
