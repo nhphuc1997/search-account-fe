@@ -141,46 +141,6 @@ export default function AbsNormalTransactions() {
           </div>
         </Col>
       </Row>
-
-      {/* <Modal
-          title="Xác minh giao dịch"
-          open={modalVerifyCode}
-          onCancel={() => setModalVerifyCode(false)}
-          footer={[
-            <Button
-              key="submit"
-              type="primary"
-              onClick={() => submitBtn?.current?.click()}
-              loading={verifyLoading}
-            >
-              Hoàn tất
-            </Button>,
-          ]}
-        >
-          <div className="py-3">
-            <Form
-              form={formVerifyCode}
-              autoComplete="off"
-              onFinish={onFinishVerifyCode}
-            >
-              <Form.Item
-                name="code"
-                rules={[
-                  { required: true, message: "Vui lòng nhập mã xác minh" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-
-              <Button
-                ref={submitBtn}
-                type="primary"
-                htmlType="submit"
-                className="!hidden"
-              />
-            </Form>
-          </div>
-        </Modal> */}
     </div>
   );
 }
