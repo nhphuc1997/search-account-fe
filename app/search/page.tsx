@@ -4,6 +4,9 @@ import {
   Button,
   Col,
   Descriptions,
+  Form,
+  Input,
+  Modal,
   Pagination,
   Row,
   Space,
@@ -11,6 +14,7 @@ import {
   TableProps,
   Typography,
 } from "antd";
+import { useRef, useState } from "react";
 
 interface DataType {
   key: string;
@@ -21,6 +25,9 @@ interface DataType {
 }
 
 export default function SearchPage() {
+  const [confirmTransaction, setConfirmTransaction] = useState<boolean>(false);
+  const submitBtn = useRef<any>(null);
+
   const columns: TableProps<DataType>["columns"] = [
     {
       title: "Name",
@@ -100,6 +107,7 @@ export default function SearchPage() {
               type="primary"
               icon={<FileProtectOutlined />}
               iconPosition="end"
+              onClick={() => setConfirmTransaction(true)}
             >
               Xác minh giao dịch
             </Button>
@@ -128,6 +136,42 @@ export default function SearchPage() {
             </div>
           </Col>
         </Row>
+
+        <Modal
+          title="Xác minh giao dịch"
+          open={confirmTransaction}
+          onCancel={() => setConfirmTransaction(false)}
+          footer={[
+            <Button onClick={() => setConfirmTransaction(false)}>Huỷ</Button>,
+            <Button
+              key="submit"
+              type="primary"
+              onClick={() => submitBtn?.current?.click()}
+            >
+              Hoàn tất
+            </Button>,
+          ]}
+        >
+          <div className="py-3">
+            <Form autoComplete="off">
+              <Form.Item
+                name="username"
+                rules={[
+                  { required: true, message: "Vui lòng nhập mã xác minh" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Button
+                ref={submitBtn}
+                type="primary"
+                htmlType="submit"
+                className="!hidden"
+              />
+            </Form>
+          </div>
+        </Modal>
       </div>
     </div>
   );
