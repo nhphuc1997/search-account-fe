@@ -1,11 +1,28 @@
 import { Carousel, Col, Divider, Row, Typography } from "antd";
 import Articles from "./Article";
+import { useRouter } from "next/navigation";
 
 export default function TopNews() {
+  const router = useRouter();
   const images = [
-    "https://vst.mof.gov.vn/webcenter/image/idcplg?IdcService=GET_FILE&dDocName=KBNN216944&dID=229494&RevisionSelectionMethod=LatestReleased&Rendition=Web&allowInterrupt=1&noSaveAs=1",
-    "https://vst.mof.gov.vn/webcenter/image/idcplg?IdcService=GET_FILE&dDocName=KBNN216961&dID=229513&RevisionSelectionMethod=LatestReleased&Rendition=Web&allowInterrupt=1&noSaveAs=1",
-    "https://vst.mof.gov.vn/webcenter/image/idcplg?IdcService=GET_FILE&dDocName=KBNN216944&dID=229494&RevisionSelectionMethod=LatestReleased&Rendition=Web&allowInterrupt=1&noSaveAs=1",
+    {
+      image:
+        "https://vst.mof.gov.vn/webcenter/image/idcplg?IdcService=GET_FILE&dDocName=KBNN216944&dID=229494&RevisionSelectionMethod=LatestReleased&Rendition=Web&allowInterrupt=1&noSaveAs=1",
+      title:
+        "Thắt chặt hữu nghị, tăng cường hợp tác toàn diện về tài chính giữa Việt Nam và Australia",
+      des: "Sáng ngày 30/7/2024, tại trụ sở Bộ Tài chính, Thứ trưởng Bộ Tài chính Bùi Văn Khắng đã chủ trì buổi làm việc với đoàn công tác của Quỹ Tiền tệ quốc tế... ",
+      time: "18/07/2024",
+      url: "https://vst.mof.gov.vn/webcenter/portal/kbnn/r/lm/htqt/htqt_chitiet?dDocName=KBNN216987&_afrLoop=47993057379844136",
+    },
+    {
+      image:
+        "https://vst.mof.gov.vn/webcenter/image/idcplg?IdcService=GET_FILE&dDocName=KBNN216969&dID=229521&RevisionSelectionMethod=LatestReleased&Rendition=Web&allowInterrupt=1&noSaveAs=1",
+      title:
+        "Kho bạc Nhà nước dâng hương tưởng niệm các Anh hùng liệt sĩ tại Đài tưởng niệm Bắc Sơn, Ba Đình, Hà Nội",
+      des: "Nhân dịp kỷ niệm 77 năm ngày Thương binh – Liệt sĩ (27.7.1947 – 27.7.2024), sáng ngày 26/7/2024, Đoàn đại biểu Kho bạc Nhà nước (KBNN) ... ",
+      time: "18/07/2024",
+      url: "https://vst.mof.gov.vn/webcenter/portal/kbnn/r/o/ttsk/hdkbnn/hdkbnn_chitiet?dDocName=KBNN216968&_afrLoop=47993232557872466",
+    },
   ];
 
   return (
@@ -16,24 +33,26 @@ export default function TopNews() {
             <Col xs={24} md={12}>
               <Carousel effect="fade" dots={false} autoplay>
                 {images.map((item, index) => (
-                  <div className="" key={index}>
+                  <div
+                    className="cursor-pointer"
+                    key={index}
+                    onClick={() => router.push(item.url)}
+                  >
                     <div
                       className="h-[340px] w-full bg-transparent bg-center bg-cover bg-no-repeat"
-                      style={{ backgroundImage: `url(${item})` }}
+                      style={{ backgroundImage: `url(${item.image})` }}
                     />
                     <div className="mt-[-120px] bg-[#e9f0f6] opacity-75 px-2">
                       <Typography.Text className="text-base font-bold !text-[#2c6ea8]">
-                        Kho bạc Nhà nước họp báo công bố kết quả thực hiện nhiệm
-                        vụ trọng tâm trong 6 tháng đầu năm 2024
+                        {item.title}
+
                         <Typography.Text className="mx-2 text-xs font-normal !text-[#2c6ea8]">
-                          (18/07/2024)
+                          {item.time}
                         </Typography.Text>
                       </Typography.Text>
 
                       <Typography.Paragraph className="!my-0 text-sm font-normal text-pretty">
-                        Chiều ngày 18/7/2024, tại trụ sở Kho bạc Nhà nước
-                        (KBNN), tổ chức họp báo về “Kết quả công tác trọng tâm 6
-                        tháng đầu năm 2024 của hệ thống KBNN”. Bà Trần...
+                        {item.des}
                       </Typography.Paragraph>
                     </div>
                   </div>
