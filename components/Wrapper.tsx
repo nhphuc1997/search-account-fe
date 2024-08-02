@@ -20,13 +20,16 @@ export default function Wrapper({
           style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
         >
           <div className="flex flex-col">
-            <Typography.Title
-              level={5}
-              className="!text-red-600 !font-extrabold uppercase !my-3"
-              onClick={() => router.push("/")}
-            >
-              CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
-            </Typography.Title>
+            <div className="flex justify-start items-center">
+              <Image src="/static/logo.png" />
+              <Typography.Title
+                level={5}
+                className="!text-red-500 !font-extrabold uppercase"
+                onClick={() => router.push("/")}
+              >
+                CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
+              </Typography.Title>
+            </div>
 
             <div className="w-full flex flex-row h-[40px]">
               <div className="w-5/6 flex flex-row justify-start items-center h-[40px] bg-[#21436b]">
