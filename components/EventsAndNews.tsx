@@ -2,8 +2,11 @@ import { Col, Row, Typography } from "antd";
 import Image from "next/image";
 import News from "./News";
 import Media from "./Media";
+import { useRouter } from "next/navigation";
 
 export default function MainNews() {
+  const router = useRouter();
+
   const listMenu = [
     {
       name: "Chuyển đổi Kho bạc số",
@@ -31,6 +34,16 @@ export default function MainNews() {
     },
   ];
 
+  const listMinistry = [
+    { url: "http://dangcongsan.vn/", img: "/static/a1.jpg" },
+    { url: "https://quochoi.vn/Pages/default.aspx", img: "/static/a2.jpg" },
+    {
+      url: "https://www.mof.gov.vn/webcenter/portal/btcvn",
+      img: "/static/a3.jpg",
+    },
+    { url: "https://chinhphu.vn/", img: "/static/a4.jpg" },
+  ];
+
   return (
     <div className="py-6">
       <Row gutter={16}>
@@ -51,6 +64,18 @@ export default function MainNews() {
               </Typography.Text>
             </div>
           ))}
+
+          <div className="py-3">
+            {listMinistry.map((item) => {
+              return (
+                <div
+                  className="h-[70px] w-full bg-transparent bg-fit bg-center bg-no-repeat py-1 cursor-pointer"
+                  style={{ backgroundImage: `url(${item.img})` }}
+                  onClick={() => router.push(item.url)}
+                />
+              );
+            })}
+          </div>
         </Col>
         <Col span={12}>
           <div>
