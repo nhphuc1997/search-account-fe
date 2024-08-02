@@ -1,6 +1,6 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Button, Col, Layout, Row, Typography } from "antd";
+import { Button, Col, Divider, Layout, Row, Typography } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import BgBanner from "@/assets/bg_banner.jpg";
 import { useRouter } from "next/navigation";
@@ -38,15 +38,17 @@ export default function Wrapper({
                 >
                   Trang chủ
                 </div>
+                <Divider className="bg-white" type="vertical" />
                 <div className="!h-full px-6 flex items-center text-white hover:bg-[#246097]">
                   Giới thiệu KBNN
                 </div>
+                <Divider className="bg-white" type="vertical" />
                 <div className="!h-full px-6 flex items-center text-white hover:bg-[#246097]">
                   Chiến lược phát triển KBNN
                 </div>
               </div>
 
-              <div className="w-1/6 h-[40px] flex justify-end items-center bg-[#246097]">
+              <div className="w-1/6 h-[40px] flex justify-center items-center bg-[#246097]">
                 <Button
                   icon={<SearchOutlined />}
                   type="text"
