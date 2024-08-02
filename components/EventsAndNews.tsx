@@ -1,6 +1,7 @@
 import { Col, Row, Typography } from "antd";
 import Image from "next/image";
 import News from "./News";
+import Media from "./Media";
 
 export default function MainNews() {
   const listMenu = [
@@ -58,11 +59,12 @@ export default function MainNews() {
                 Tin tức - sự kiện
               </Typography.Text>
             </div>
-
             <News />
           </div>
         </Col>
-        <Col span={6}>1</Col>
+        <Col span={6}>
+          <Media />
+        </Col>
       </Row>
     </div>
   );
