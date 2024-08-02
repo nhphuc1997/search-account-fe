@@ -7,8 +7,8 @@ import Wrapper from "../components/Wrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tra cứu tài khoản",
-  description: "Tra cứu tài khoản",
+  title: "CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC",
+  description: "CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC",
 };
 
 export default function RootLayout({

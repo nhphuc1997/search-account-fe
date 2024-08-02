@@ -1,9 +1,13 @@
+"use client";
 import { doPost } from "@/utils/doMethod";
+import { sleep } from "@/utils/sleep";
 import { useMutation } from "@tanstack/react-query";
-import { Button, Col, Form, Input, notification, Row } from "antd";
+import { Button, Form, Input, notification } from "antd";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function FormVerifyCode() {
+  const router = useRouter();
   const [formVerifyCode] = Form.useForm();
   const [api, context] = notification.useNotification();
   const [btnLoading, setBtnLoading] = useState<boolean>(false);
@@ -14,7 +18,7 @@ export default function FormVerifyCode() {
       setBtnLoading(true);
       return await doPost("/verify-code", payload);
     },
-    onSuccess(data, variables, context) {
+    async onSuccess(data, variables, context) {
       if (data?.statusCode === 200) {
         formVerifyCode.resetFields();
         api.success({
@@ -22,7 +26,8 @@ export default function FormVerifyCode() {
           description: "Xác minh giao dịch thành công",
         });
         setBtnLoading(false);
-        return true;
+        await sleep(3500);
+        return router.push("/");
       }
       setBtnLoading(false);
       return false;
