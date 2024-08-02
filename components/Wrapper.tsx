@@ -2,7 +2,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Button, Col, Divider, Layout, Row, Typography, Image } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
-import BgBanner from "@/assets/bg_banner.jpg";
 import { useRouter } from "next/navigation";
 import { SearchOutlined } from "@ant-design/icons";
 
@@ -18,15 +17,15 @@ export default function Wrapper({
       <Layout className="">
         <Header
           className="!h-auto cursor-pointer sticky top-0 z-10 w-full !bg-white px-5 md:!px-40 bg-center bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(${BgBanner})` }}
+          style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
         >
           <div className="flex flex-col">
             <Typography.Title
               level={5}
-              className="!text-red-600 uppercase !my-3"
+              className="!text-red-600 !font-extrabold uppercase !my-3"
               onClick={() => router.push("/")}
             >
-              CỔNG THÔNG TIN
+              CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
             </Typography.Title>
 
             <div className="w-full flex flex-row h-[40px]">
