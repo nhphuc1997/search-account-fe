@@ -97,23 +97,24 @@ export default function AbsNormalTransactions() {
   return (
     <div className="py-3">
       <Row>
-        <Col span={18}>
-          <Typography.Title level={5}>
+        <Col xs={24} md={12}>
+          <Typography.Title level={5} className="text-center md:text-left">
             Thông tin các giao dịch bất thường
           </Typography.Title>
         </Col>
-        <Col span={6}>
-          <Button
-            block
-            type="primary"
-            icon={<FileProtectOutlined />}
-            iconPosition="end"
-            onClick={() => {
-              router.push(`/verify/${param.id}`);
-            }}
-          >
-            Xác minh giao dịch
-          </Button>
+        <Col xs={24} md={12}>
+          <div className="flex justify-center md:justify-end items-center">
+            <Button
+              type="primary"
+              icon={<FileProtectOutlined />}
+              iconPosition="end"
+              onClick={() => {
+                router.push(`/verify/${param.id}`);
+              }}
+            >
+              Xác minh giao dịch
+            </Button>
+          </div>
         </Col>
       </Row>
 
