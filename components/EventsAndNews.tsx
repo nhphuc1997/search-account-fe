@@ -1,5 +1,4 @@
-import { Col, Row, Typography } from "antd";
-import Image from "next/image";
+import { Col, Row, Typography, Image } from "antd";
 import News from "./News";
 import Media from "./Media";
 import { useRouter } from "next/navigation";
@@ -42,6 +41,29 @@ export default function MainNews() {
       img: "/static/a3.jpg",
     },
     { url: "https://chinhphu.vn/", img: "/static/a4.jpg" },
+  ];
+
+  const listCQ = [
+    {
+      url: "https://www.gdt.gov.vn/",
+      img: "/static/thue.png",
+      name: "Tổng cục thuế",
+    },
+    {
+      url: "https://www.customs.gov.vn/",
+      img: "/static/dutru.png",
+      name: "Tổng cục dự trữ",
+    },
+    {
+      url: "http://www.gdsr.gov.vn/Pages/Home.aspx",
+      img: "/static/haiquan.png",
+      name: "Tổng hải quan",
+    },
+    {
+      url: "https://ssc.gov.vn/webcenter/portal/ubck",
+      img: "/static/ck.png",
+      name: "Ủy Ban Chứng Khoán Nhà Nước",
+    },
   ];
 
   return (
@@ -89,6 +111,24 @@ export default function MainNews() {
         </Col>
         <Col span={6}>
           <Media />
+
+          <div className="py-3">
+            {listCQ.map((item) => (
+              <div
+                className="w-full flex justify-start items-center p-2 bg-[#E9F0F8] my-1 cursor-pointer"
+                onClick={() => router.push(item.url)}
+              >
+                <div className="w-1/5 flex items-center">
+                  <Image src={item.img} alt="" width={50} height={50} />
+                </div>
+                <div className="w-4/5 px-2">
+                  <Typography.Text className="text-sm font-semibold text-pretty">
+                    {item.name}
+                  </Typography.Text>
+                </div>
+              </div>
+            ))}
+          </div>
         </Col>
       </Row>
     </div>
