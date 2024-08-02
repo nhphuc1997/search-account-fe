@@ -39,5 +39,5 @@ body {
 .ant-pagination-item,
 .ant-table-header,
 .ant-input-number-affix-wrapper {
-  border-radius: 8px !important;
+  border-radius: unset !important;
 }
