@@ -15,8 +15,8 @@ export default function TopNews() {
           <Row className="">
             <Col xs={24} md={12}>
               <Carousel effect="fade" dots={false} autoplay>
-                {images.map((item) => (
-                  <div className="">
+                {images.map((item, index) => (
+                  <div className="" key={index}>
                     <div
                       className="h-[340px] w-full bg-transparent bg-center bg-cover bg-no-repeat"
                       style={{ backgroundImage: `url(${item})` }}

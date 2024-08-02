@@ -70,10 +70,11 @@ export default function MainNews() {
     <div className="py-6">
       <Row gutter={16}>
         <Col span={6}>
-          {listMenu.map((item: any) => (
+          {listMenu.map((item: any, index: number) => (
             <div
               className="h-[30px] w-full bg-transparent bg-fit bg-center bg-repeat flex justify-start items-center"
               style={{ backgroundImage: `url(/static/bg_total.jpg)` }}
+              key={index}
             >
               <Image
                 src={`/static/arr_list.jpg`}
@@ -88,9 +89,10 @@ export default function MainNews() {
           ))}
 
           <div className="py-3">
-            {listMinistry.map((item) => {
+            {listMinistry.map((item, index) => {
               return (
                 <div
+                  key={index}
                   className="h-[70px] w-full bg-transparent bg-fit bg-center bg-no-repeat py-1 cursor-pointer"
                   style={{ backgroundImage: `url(${item.img})` }}
                   onClick={() => router.push(item.url)}
@@ -113,8 +115,9 @@ export default function MainNews() {
           <Media />
 
           <div className="py-3">
-            {listCQ.map((item) => (
+            {listCQ.map((item, index) => (
               <div
+                key={index}
                 className="w-full flex justify-start items-center p-2 bg-[#E9F0F8] my-1 cursor-pointer"
                 onClick={() => router.push(item.url)}
               >

@@ -35,8 +35,8 @@ export default function News() {
 
   return (
     <div>
-      {news.map((_new: any) => (
-        <div className="flex justify-start items-center p-3 w-full">
+      {news.map((_new: any, index) => (
+        <div className="flex justify-start items-center p-3 w-full" key={index}>
           <div className="w-1/5">
             <Image src={_new.img} alt="" width={150} height={70} />
           </div>

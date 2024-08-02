@@ -23,17 +23,25 @@ export default function Media() {
         <Image preview={false} src={"/static/tin_media.jpeg"} alt="" />
         <div>
           <Typography.Text className="text-sm uppercase !text-white font-semibold">
-            <Image src="/static/camera.png" preview={false} className="pr-3" />
+            <Image
+              src="/static/camera.png"
+              preview={false}
+              className="pr-3"
+              alt=""
+            />
             Tin camera
           </Typography.Text>
         </div>
       </div>
 
       <div className=" bg-[#f2f7fa] p-2">
-        {media.map((item) => (
-          <div className="w-full flex justify-start items-start py-1 cursor-pointer">
+        {media.map((item, index) => (
+          <div
+            className="w-full flex justify-start items-start py-1 cursor-pointer"
+            key={index}
+          >
             <div className="w-1/12">
-              <Image src="/static/camera.png" preview={false} />
+              <Image src="/static/camera.png" preview={false} alt="" />
             </div>
 
             <div className="w-11/12" onClick={() => router.push(item.url)}>

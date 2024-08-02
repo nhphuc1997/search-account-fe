@@ -93,7 +93,7 @@ export default function Wrapper({
             </div>
 
             <div>
-              <Image src="/static/handle_cert.png" preview={false} />
+              <Image alt="" src="/static/handle_cert.png" preview={false} />
             </div>
 
             <div>
