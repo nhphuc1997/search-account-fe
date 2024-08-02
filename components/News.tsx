@@ -51,6 +51,15 @@ export default function News() {
               <Typography.Text className="block !text-xs font-semibold">
                 {_new.des}
               </Typography.Text>
+
+              <div className="w-full flex justify-end items-center">
+                <Typography.Text className="text-xs px-2">
+                  {_new.time}
+                </Typography.Text>
+                <a href={_new.more} className="text-xs">
+                  Xem thêm
+                </a>
+              </div>
             </div>
           </div>
         </div>
