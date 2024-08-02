@@ -37,11 +37,25 @@ export default function Wrapper({
                   Trang chủ
                 </div>
                 <Divider className="bg-white" type="vertical" />
-                <div className="!h-full px-6 flex items-center text-white hover:bg-[#246097]">
+                <div
+                  className="!h-full px-6 flex items-center text-white hover:bg-[#246097]"
+                  onClick={() =>
+                    router.push(
+                      "https://vst.mof.gov.vn/webcenter/portal/kbnn/r/m/gtkbnn?_adf.ctrl-state=e6vq8iy3d_1&_afrLoop=47992560973295246#!%40%40%3F_afrLoop%3D47992560973295246%26_adf.ctrl-state%3De6vq8iy3d_5"
+                    )
+                  }
+                >
                   Giới thiệu KBNN
                 </div>
                 <Divider className="bg-white" type="vertical" />
-                <div className="!h-full px-6 flex items-center text-white hover:bg-[#246097]">
+                <div
+                  className="!h-full px-6 flex items-center text-white hover:bg-[#246097]"
+                  onClick={() =>
+                    router.push(
+                      "https://vst.mof.gov.vn/webcenter/portal/kbnn/r/m/clptkbnnn/clptkbnn_chitiet?dDocName=MOF304133&_afrLoop=47992591364717880#!%40%40%3F_afrLoop%3D47992591364717880%26dDocName%3DMOF304133%26_adf.ctrl-state%3De6vq8iy3d_38"
+                    )
+                  }
+                >
                   Chiến lược phát triển KBNN
                 </div>
               </div>
