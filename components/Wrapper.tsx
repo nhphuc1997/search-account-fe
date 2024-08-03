@@ -10,16 +10,10 @@ import {
   Image,
   Dropdown,
   MenuProps,
-  Space,
 } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { useRouter } from "next/navigation";
-import {
-  DownOutlined,
-  MenuFoldOutlined,
-  MenuOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 const queryClient = new QueryClient();
@@ -59,7 +53,7 @@ export default function Wrapper({
           style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
         >
           <div className="flex flex-col">
-            <div className="flex justify-start items-center">
+            <div className="flex justify-start items-center py-2">
               <Image src="/static/logo.png" />
               <Typography.Title
                 level={5}
@@ -70,7 +64,7 @@ export default function Wrapper({
               </Typography.Title>
             </div>
 
-            <div className="!hidden lg:flex h-[40px] w-full">
+            <div className="!hidden lg:flex h-[40px] w-full !pt-3">
               <div className="w-5/6 flex flex-row justify-start items-center h-[40px] bg-[#21436b]">
                 <div
                   className="!h-full px-6 flex items-center text-white hover:bg-[#246097]"
@@ -128,7 +122,7 @@ export default function Wrapper({
                 </Dropdown>
               </div>
 
-              <div className="h-[40px] flex items-center">
+              <div className="h-full flex items-center">
                 <Button
                   icon={<SearchOutlined />}
                   type="text"
@@ -147,7 +141,7 @@ export default function Wrapper({
         </Header>
 
         <Content className="px-3 md:px-40 py-4">
-          <div className="min-h-dvh bg-white p-4 lg:p-10">
+          <div className="min-h-dvh bg-white !p-0 lg:!p-4">
             <Row>
               <Col span={24}>{children}</Col>
             </Row>

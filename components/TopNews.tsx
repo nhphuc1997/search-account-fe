@@ -39,10 +39,10 @@ export default function TopNews() {
                     onClick={() => router.push(item.url)}
                   >
                     <div
-                      className="h-[340px] w-full bg-transparent bg-center bg-cover bg-no-repeat"
+                      className="relative h-[340px] w-full bg-transparent bg-center bg-cover bg-no-repeat"
                       style={{ backgroundImage: `url(${item.image})` }}
                     />
-                    <div className="mt-[-120px] bg-[#e9f0f6] opacity-75 px-2">
+                    <div className="absolute bottom-0 bg-[#e9f0f6] opacity-75 px-2">
                       <Typography.Text className="text-base font-bold !text-[#2c6ea8]">
                         {item.title}
 
@@ -76,14 +76,14 @@ export default function TopNews() {
         </div>
       </Col>
       <Col xs={24} md={4}>
-        <div className="h-[160px] overflow-y-auto bg-[#f2f7fa]">
+        <div className="bg-[#f2f7fa]">
           <div className="bg-[#2573B5] px-3 py-1">
             <Typography.Text className="text-sm font-medium !text-white uppercase">
               Thông báo
             </Typography.Text>
           </div>
 
-          <div className="p-2">
+          <div className="p-2 h-[160px] overflow-y-auto">
             <ul className="!list-disc">
               <li className="pb-2">
                 <a href="" className="text-xs">
@@ -108,14 +108,14 @@ export default function TopNews() {
 
         <Divider className="!my-1" />
 
-        <div className="h-[160px] overflow-y-auto bg-[#f2f7fa]">
+        <div className="bg-[#f2f7fa]">
           <div className="bg-[#2573B5] px-3 py-1">
             <Typography.Text className="text-sm font-medium !text-white uppercase">
               Văn bản mới
             </Typography.Text>
           </div>
 
-          <div className="p-2">
+          <div className="p-2 h-[160px] overflow-y-auto">
             <ul className="!list-disc">
               <li className="pb-2">
                 <a

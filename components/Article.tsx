@@ -32,20 +32,14 @@ export default function Articles() {
   ];
 
   return (
-    <div className="p-4">
+    <div className="p-3">
       {images.map((item, index) => (
         <div key={index}>
-          <div className="flex items-start w-full">
-            <div className="w-1/4">
-              <Image
-                width={100}
-                height={50}
-                preview={false}
-                src={item.image}
-                alt=""
-              />
+          <div className="flex flex-col lg:flex-row items-start w-full">
+            <div className="w-full lg:!w-1/5">
+              <Image preview={false} src={item.image} alt="" />
             </div>
-            <div className="px-2 w-3/4">
+            <div className="w-full lg:!w-4/5 lg:px-2">
               <Typography.Text className="!my-0 !text-[#2c6ea8] font-semibold">
                 {item.title}
               </Typography.Text>
