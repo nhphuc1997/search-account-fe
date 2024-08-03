@@ -39,7 +39,7 @@ export default function FormVerifyCode() {
   };
 
   return (
-    <div className="p-4 border rounded-lg">
+    <div className="p-4 rounded-lg">
       {context}
       <Form
         form={formVerifyCode}

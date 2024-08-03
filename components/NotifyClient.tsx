@@ -10,12 +10,12 @@ export default function NotifyClient() {
       <div className="w-full md:w-1/4 lg:w-1/6 text-center text-white font-semibold">
         <div className="flex justify-center items-center">
           <WarningOutlined />
-          <Typography.Text className="ml-2 !text-white">
+          <Typography.Text className="ml-2 !text-white font-semibold">
             Thông báo
           </Typography.Text>
         </div>
       </div>
-      <div className="w-full md:w-3/4 lg:w-5/6 text-white text-pretty">
+      <div className="w-full md:w-3/4 lg:w-5/6 text-white text-pretty font-semibold">
         {accountStore.account?.notification?.content}
       </div>
     </div>

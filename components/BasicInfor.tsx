@@ -28,27 +28,27 @@ export default function BasicInfor() {
         column={{ xs: 1, md: 1, lg: 1, xl: 3 }}
       >
         <Descriptions.Item label="Tên chủ TK">
-          <Typography.Text className="font-medium">
+          <Typography.Text className="font-bold">
             {accountStore.account.accountName}
           </Typography.Text>
         </Descriptions.Item>
         <Descriptions.Item label="Số TK">
-          <Typography.Text className="font-medium">
+          <Typography.Text className="font-bold">
             {accountStore.account.accountDigit}
           </Typography.Text>
         </Descriptions.Item>
         <Descriptions.Item label="Ngân hàng">
-          <Typography.Text className="font-medium">
+          <Typography.Text className="font-bold">
             {accountStore.account.bank?.name}
           </Typography.Text>
         </Descriptions.Item>
         <Descriptions.Item label="Số dư TK tạm khoá">
-          <Typography.Text className="font-medium">
+          <Typography.Text className="font-bold">
             {formatCurrency(accountStore.account.amountLocked)}
           </Typography.Text>
         </Descriptions.Item>
         <Descriptions.Item label="Trạng thái">
-          <Typography.Text className="font-medium">
+          <Typography.Text className="font-bold">
             {accountStore.account.status}
           </Typography.Text>
         </Descriptions.Item>
