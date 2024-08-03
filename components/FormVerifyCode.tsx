@@ -57,7 +57,7 @@ export default function FormVerifyCode() {
         <div className="flex justify-center items-center">
           <Button
             loading={btnLoading}
-            className="w-[150px]"
+            className="w-[150px] !bg-[#246097]"
             type="primary"
             htmlType="submit"
           >

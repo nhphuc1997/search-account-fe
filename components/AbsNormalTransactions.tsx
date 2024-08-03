@@ -102,20 +102,6 @@ export default function AbsNormalTransactions() {
             Thông tin các giao dịch bất thường
           </Typography.Title>
         </Col>
-        <Col xs={24} md={12}>
-          <div className="flex justify-center md:justify-end items-center">
-            <Button
-              type="primary"
-              icon={<FileProtectOutlined />}
-              iconPosition="end"
-              onClick={() => {
-                router.push(`/verify/${param.id}`);
-              }}
-            >
-              Xác minh giao dịch
-            </Button>
-          </div>
-        </Col>
       </Row>
 
       <Row>
@@ -139,6 +125,24 @@ export default function AbsNormalTransactions() {
               pageSize={10}
               onChange={(page) => setTransactionsPage(page)}
             />
+          </div>
+        </Col>
+      </Row>
+
+      <Row gutter={16}>
+        <Col span={24}>
+          <div className="flex justify-end  items-center">
+            <Button
+              className="!bg-[#246097]"
+              type="primary"
+              icon={<FileProtectOutlined />}
+              iconPosition="end"
+              onClick={() => {
+                router.push(`/verify/${param.id}`);
+              }}
+            >
+              Xác minh giao dịch
+            </Button>
           </div>
         </Col>
       </Row>
