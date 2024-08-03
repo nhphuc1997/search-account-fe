@@ -1,9 +1,26 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Button, Col, Divider, Layout, Row, Typography, Image } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Layout,
+  Row,
+  Typography,
+  Image,
+  Dropdown,
+  MenuProps,
+  Space,
+} from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { useRouter } from "next/navigation";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  MenuFoldOutlined,
+  MenuOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import Link from "next/link";
 
 const queryClient = new QueryClient();
 
@@ -11,6 +28,28 @@ export default function Wrapper({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const router = useRouter();
+  const items: MenuProps["items"] = [
+    {
+      label: <Link href="/">Trang chủ</Link>,
+      key: "0",
+    },
+    {
+      label: (
+        <Link href="https://vst.mof.gov.vn/webcenter/portal/kbnn/r/m/gtkbnn?_adf.ctrl-state=e6vq8iy3d_1&_afrLoop=47992560973295246#!%40%40%3F_afrLoop%3D47992560973295246%26_adf.ctrl-state%3De6vq8iy3d_5">
+          Giới thiệu KBNN
+        </Link>
+      ),
+      key: "1",
+    },
+    {
+      label: (
+        <Link href="https://vst.mof.gov.vn/webcenter/portal/kbnn/r/m/clptkbnnn/clptkbnn_chitiet?dDocName=MOF304133&_afrLoop=47992591364717880#!%40%40%3F_afrLoop%3D47992591364717880%26dDocName%3DMOF304133%26_adf.ctrl-state%3De6vq8iy3d_38">
+          Chiến lược phát triển KBNN
+        </Link>
+      ),
+      key: "3",
+    },
+  ];
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -80,8 +119,29 @@ export default function Wrapper({
             </div>
 
             <div className="!flex justify-between items-center px-3 lg:!hidden h-[40px] w-full bg-[#21436b]">
-              <div className="">1</div>
-              <div className="">2</div>
+              <div className="h-[40px] flex items-center">
+                <Dropdown menu={{ items }} trigger={["click"]}>
+                  <Button
+                    icon={<MenuOutlined />}
+                    onClick={(e) => e.preventDefault()}
+                  />
+                </Dropdown>
+              </div>
+
+              <div className="h-[40px] flex items-center">
+                <Button
+                  icon={<SearchOutlined />}
+                  type="text"
+                  iconPosition="end"
+                  className="!text-white hover:!bg-transparent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    return router.push("/search");
+                  }}
+                >
+                  Tìm kiếm
+                </Button>
+              </div>
             </div>
           </div>
         </Header>
