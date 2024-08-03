@@ -39,7 +39,7 @@ export default function TopNews() {
                     onClick={() => router.push(item.url)}
                   >
                     <div
-                      className="relative h-[340px] w-full bg-transparent bg-center bg-cover bg-no-repeat"
+                      className="relative h-[390px] w-full bg-transparent bg-center bg-cover bg-no-repeat"
                       style={{ backgroundImage: `url(${item.image})` }}
                     />
                     <div className="absolute bottom-0 bg-[#e9f0f6] opacity-75 px-2">
@@ -67,7 +67,7 @@ export default function TopNews() {
                   </Typography.Text>
                 </div>
 
-                <div className="h-[300px] overflow-y-auto bg-[#f2f7fa]">
+                <div className="h-[360px] overflow-y-auto bg-[#f2f7fa]">
                   <Articles />
                 </div>
               </div>
