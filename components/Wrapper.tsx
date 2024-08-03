@@ -64,7 +64,7 @@ export default function Wrapper({
               </Typography.Title>
             </div>
 
-            <div className="!hidden lg:flex h-[40px] w-full !pt-3">
+            <div className="!hidden lg:!flex h-[40px] w-full">
               <div className="w-5/6 flex flex-row justify-start items-center h-[40px] bg-[#21436b]">
                 <div
                   className="!h-full px-6 flex items-center text-white hover:bg-[#246097]"
@@ -112,7 +112,7 @@ export default function Wrapper({
               </div>
             </div>
 
-            <div className="!flex justify-between items-center px-3 lg:!hidden h-[40px] w-full bg-[#21436b]">
+            <div className="!flex lg:!hidden justify-between items-center px-3  h-[40px] w-full bg-[#21436b]">
               <div className="h-[40px] flex items-center">
                 <Dropdown menu={{ items }} trigger={["click"]}>
                   <Button

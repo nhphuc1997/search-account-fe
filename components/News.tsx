@@ -48,7 +48,7 @@ export default function News() {
           </div>
           <div className="w-2/3 lg:w-5/6">
             <div className="px-2">
-              <Divider orientation="left" className="!my-0">
+              <Divider orientation="left" className="!my-0 !hidden md:!flex">
                 <Typography.Paragraph
                   className="block !text-sm font-bold !my-0 !text-[#2673b4] uppercase"
                   ellipsis={{ rows: 2 }}
@@ -56,6 +56,13 @@ export default function News() {
                   {_new.title}
                 </Typography.Paragraph>
               </Divider>
+
+              <Typography.Paragraph
+                className="!text-sm font-bold !my-0 !text-[#2673b4] uppercase !flex lg:!hidden"
+                ellipsis={{ rows: 2 }}
+              >
+                {_new.title}
+              </Typography.Paragraph>
 
               <Typography.Paragraph
                 className="block !text-xs font-medium !my-0"
