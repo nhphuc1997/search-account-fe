@@ -140,7 +140,7 @@ export default function Wrapper({
           </div>
         </Header>
 
-        <Content className="px-3 md:px-40 py-4">
+        <Content className="!px-3 lg:!px-40 py-4">
           <div className="min-h-dvh bg-white !p-0 lg:!p-4">
             <Row>
               <Col span={24}>{children}</Col>
@@ -148,7 +148,7 @@ export default function Wrapper({
           </div>
         </Content>
 
-        <Footer className="!bg-white w-full !px-3">
+        <Footer className="!bg-white w-full !px-3 lg:!px-40">
           <div className="flex justify-center items-center">
             <Typography.Text className="!text-[#246097] font-bold text-center">
               CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
