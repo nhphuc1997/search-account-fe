@@ -16,7 +16,7 @@ export default function Wrapper({
     <QueryClientProvider client={queryClient}>
       <Layout className="">
         <Header
-          className="!h-auto cursor-pointer sticky top-0 z-10 w-full !bg-white px-5 md:!px-40 bg-center bg-cover bg-no-repeat"
+          className="!h-auto cursor-pointer sticky top-0 z-10 w-full !bg-white !px-0 lg:!px-40 bg-center bg-cover bg-no-repeat"
           style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
         >
           <div className="flex flex-col">
@@ -24,14 +24,14 @@ export default function Wrapper({
               <Image src="/static/logo.png" />
               <Typography.Title
                 level={5}
-                className="!text-red-500 !font-extrabold uppercase"
+                className="!text-red-500 !font-bold uppercase !text-center lg:!text-left"
                 onClick={() => router.push("/")}
               >
                 CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
               </Typography.Title>
             </div>
 
-            <div className="w-full flex flex-row h-[40px]">
+            <div className="!hidden lg:flex h-[40px] w-full">
               <div className="w-5/6 flex flex-row justify-start items-center h-[40px] bg-[#21436b]">
                 <div
                   className="!h-full px-6 flex items-center text-white hover:bg-[#246097]"
@@ -78,11 +78,16 @@ export default function Wrapper({
                 </Button>
               </div>
             </div>
+
+            <div className="!flex justify-between items-center px-3 lg:!hidden h-[40px] w-full bg-[#21436b]">
+              <div className="">1</div>
+              <div className="">2</div>
+            </div>
           </div>
         </Header>
 
-        <Content className="px-5 md:px-40 py-4">
-          <div className="min-h-dvh bg-white p-10">
+        <Content className="px-3 md:px-40 py-4">
+          <div className="min-h-dvh bg-white p-4 lg:p-10">
             <Row>
               <Col span={24}>{children}</Col>
             </Row>
