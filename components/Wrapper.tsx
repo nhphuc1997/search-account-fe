@@ -148,14 +148,14 @@ export default function Wrapper({
           </div>
         </Content>
 
-        <Footer className="!bg-white w-full">
+        <Footer className="!bg-white w-full !px-3">
           <div className="flex justify-center items-center">
-            <Typography.Text className="!text-[#246097] font-bold">
+            <Typography.Text className="!text-[#246097] font-bold text-center">
               CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
             </Typography.Text>
           </div>
 
-          <div className="flex justify-between items-center py-3">
+          <div className="flex flex-col lg:flex-row justify-between items-center py-3">
             <div>
               <Typography.Paragraph className="!my-1">
                 Giấy phép số 173/GP-TTĐT ngày 15/12/2022
@@ -168,7 +168,7 @@ export default function Wrapper({
               </Typography.Paragraph>
             </div>
 
-            <div>
+            <div className="!py-2 lg:!px-2">
               <Image alt="" src="/static/handle_cert.png" preview={false} />
             </div>
 

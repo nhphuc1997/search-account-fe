@@ -69,10 +69,10 @@ export default function MainNews() {
   return (
     <div className="py-6">
       <Row gutter={16}>
-        <Col span={6}>
+        <Col xs={24} lg={6}>
           {listMenu.map((item: any, index: number) => (
             <div
-              className="h-[30px] w-full bg-transparent bg-fit bg-center bg-repeat flex justify-start items-center"
+              className="h-[30px] w-full bg-transparent bg-fit bg-center bg-repeat flex justify-start items-center !bg-[#E9F0F8]"
               style={{ backgroundImage: `url(/static/bg_total.jpg)` }}
               key={index}
             >
@@ -93,7 +93,7 @@ export default function MainNews() {
               return (
                 <div
                   key={index}
-                  className="h-[70px] w-full bg-transparent bg-fit bg-center bg-no-repeat py-1 cursor-pointer"
+                  className="h-[70px] w-full bg-transparent bg-cover bg-center bg-no-repeat cursor-pointer !bg-[#E9F0F8] my-2"
                   style={{ backgroundImage: `url(${item.img})` }}
                   onClick={() => router.push(item.url)}
                 />
@@ -101,7 +101,7 @@ export default function MainNews() {
             })}
           </div>
         </Col>
-        <Col span={12}>
+        <Col xs={24} lg={12}>
           <div>
             <div className="bg-[#7facd3]">
               <Typography.Text className="uppercase text-sm font-semibold px-3 py-2 !text-white">
@@ -111,14 +111,14 @@ export default function MainNews() {
             <News />
           </div>
         </Col>
-        <Col span={6}>
+        <Col xs={24} lg={6}>
           <Media />
 
           <div className="py-3">
             {listCQ.map((item, index) => (
               <div
                 key={index}
-                className="w-full flex justify-start items-center p-2 bg-[#E9F0F8] my-1 cursor-pointer"
+                className="w-full flex justify-start items-center p-2 !bg-[#E9F0F8] my-1 cursor-pointer"
                 onClick={() => router.push(item.url)}
               >
                 <div className="w-1/5 flex items-center">
