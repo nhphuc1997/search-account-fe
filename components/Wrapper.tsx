@@ -49,32 +49,39 @@ export default function Wrapper({
     <QueryClientProvider client={queryClient}>
       <Layout className="">
         <Header className="!h-auto cursor-pointer sticky top-0 z-10 !w-full !bg-[#f5f5f5] !px-0 lg:!px-40">
-          <div
-            className="flex flex-col bg-center bg-cover !bg-no-repeat"
-            style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
-          >
-            <div className="flex justify-between items-end py-2">
-              <div className="flex justify-start items-center">
+          <div className="flex flex-col">
+            <div className="flex justify-between py-2 !bg-[#fff7e8] w-full">
+              <div className="flex justify-start items-center !w-1/3">
                 <Image src="/static/logo.png" />
-                <div>
+                <div className="">
                   <Typography.Title
-                    level={3}
+                    level={5}
                     className="!text-red-500 !font-medium !text-center lg:!text-left !my-0"
                     onClick={() => router.push("/")}
                   >
                     Bộ tài chính
                   </Typography.Title>
                   <Typography.Title
-                    level={4}
+                    level={3}
                     className="!text-red-500 !font-bold uppercase !text-center lg:!text-left !my-0"
                     onClick={() => router.push("/")}
                   >
                     Kho bạc nhà nước
                   </Typography.Title>
+                  <Typography.Title
+                    level={5}
+                    className="!text-red-500 !font-medium uppercase !text-center lg:!text-left !my-0"
+                    onClick={() => router.push("/")}
+                  >
+                    cổng thông tin kho bạc nhà nước
+                  </Typography.Title>
                 </div>
               </div>
 
-              <div>
+              <div
+                className="bg-center bg-cover !bg-no-repeat !w-2/3 !h-[100px] flex justify-end items-end"
+                style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
+              >
                 <Typography.Title
                   level={5}
                   className="!text-black !my-0 px-3"
