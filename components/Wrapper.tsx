@@ -52,8 +52,8 @@ export default function Wrapper({
           <div className="flex flex-col">
             <div className="flex justify-between !bg-[#fff7e8] w-full">
               <div className="flex flex-col lg:flex-row justify-start items-center !w-1/3">
-                <Image src="/static/logo.png" />
-                <div className="!hidden lg:!block">
+                <Image src="/static/logo.png" preview={false} />
+                <div className="!hidden lg:!block px-3">
                   <Typography.Title
                     level={5}
                     className="!text-red-500 !font-medium !text-center lg:!text-left !my-0"
