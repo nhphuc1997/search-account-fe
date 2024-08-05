@@ -56,21 +56,21 @@ export default function Wrapper({
                 <div className="!hidden lg:!block px-3">
                   <Typography.Title
                     level={5}
-                    className="!text-red-500 !font-medium !text-center lg:!text-left !my-0"
+                    className="!text-red-500 !font-medium !text-center lg:!text-left !my-0 uppercase !text-sm"
                     onClick={() => router.push("/")}
                   >
                     Bộ tài chính
                   </Typography.Title>
                   <Typography.Title
                     level={3}
-                    className="!text-red-500 !font-bold uppercase !text-center lg:!text-left !my-0"
+                    className="!text-red-500 !font-bold !text-center lg:!text-left !my-0 uppercase"
                     onClick={() => router.push("/")}
                   >
                     Kho bạc nhà nước
                   </Typography.Title>
                   <Typography.Title
                     level={5}
-                    className="!text-red-500 !font-medium !text-center lg:!text-left !my-0 capitalize"
+                    className="!text-red-500 !font-medium !text-center lg:!text-left !my-0 uppercase !text-sm"
                     onClick={() => router.push("/")}
                   >
                     cổng thông tin kho bạc nhà nước
@@ -84,19 +84,19 @@ export default function Wrapper({
               >
                 <div className="!block lg:!hidden px-1">
                   <Typography.Text
-                    className="!text-red-500 !font-medium !my-0 !text-sm block"
+                    className="!text-red-500 !font-medium !my-0 !text-sm block uppercase"
                     onClick={() => router.push("/")}
                   >
                     Bộ tài chính
                   </Typography.Text>
                   <Typography.Text
-                    className="!text-red-500 !font-bold uppercase !my-0 !text-sm block"
+                    className="!text-red-500 !font-bold !my-0 !text-sm block uppercase"
                     onClick={() => router.push("/")}
                   >
                     Kho bạc nhà nước
                   </Typography.Text>
                   <Typography.Text
-                    className="!text-red-500 !font-medium !my-0 !text-sm block capitalize"
+                    className="!text-red-500 !font-medium !my-0 !text-sm block uppercase"
                     onClick={() => router.push("/")}
                   >
                     cổng thông tin kho bạc nhà nước
