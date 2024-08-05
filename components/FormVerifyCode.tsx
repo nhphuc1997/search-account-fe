@@ -25,7 +25,7 @@ export default function FormVerifyCode() {
           message: null,
           description: "Xác minh giao dịch thành công",
         });
-        setBtnLoading(false);
+        setBtnLoading(true);
         await sleep(3500);
         return router.push("/");
       }
