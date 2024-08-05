@@ -67,7 +67,7 @@ export default function TopNews() {
                   </Typography.Text>
                 </div>
 
-                <div className="h-[360px] overflow-y-auto bg-[#f2f7fa]">
+                <div className="h-[360px] overflow-y-hidden bg-[#f2f7fa]">
                   <Articles />
                 </div>
               </div>
