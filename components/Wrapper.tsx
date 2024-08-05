@@ -77,7 +77,7 @@ export default function Wrapper({
               <div>
                 <Typography.Title
                   level={5}
-                  className="!text-black !my-0"
+                  className="!text-black !my-0 px-3"
                   onClick={() => router.push("/")}
                 >
                   {new Date().toDateString().split("-").reverse().join("-")}
@@ -86,7 +86,7 @@ export default function Wrapper({
             </div>
 
             <div className="!hidden lg:!flex h-[40px] w-full">
-              <div className="w-5/6 flex flex-row justify-start items-center h-[40px] bg-[#21436b]">
+              <div className="w-4/5 flex flex-row justify-start items-center h-[40px] bg-[#21436b]">
                 <div
                   className="!h-full px-6 flex items-center text-white hover:bg-[#246097]"
                   onClick={() => router.push("/")}
@@ -117,7 +117,7 @@ export default function Wrapper({
                 </div>
               </div>
 
-              <div className="w-1/6 h-[40px] flex justify-center items-center bg-[#246097]">
+              <div className="w-1/5 h-[40px] flex justify-center items-center bg-[#246097]">
                 <Button
                   icon={<SearchOutlined />}
                   type="text"
@@ -128,7 +128,7 @@ export default function Wrapper({
                     return router.push("/search");
                   }}
                 >
-                  Tìm kiếm
+                  Tra cứu thông tin tài khoản
                 </Button>
               </div>
             </div>
