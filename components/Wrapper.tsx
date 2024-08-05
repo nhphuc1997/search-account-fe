@@ -51,27 +51,27 @@ export default function Wrapper({
         <Header className="!h-auto cursor-pointer sticky top-0 z-10 !w-full !bg-[#f5f5f5] !px-0 lg:!px-40">
           <div className="flex flex-col">
             <div className="flex justify-between !bg-[#fff7e8] w-full">
-              <div className="flex flex-col lg:flex-row justify-start items-center !w-1/3">
+              <div
+                className="flex flex-col lg:flex-row justify-start items-center !w-1/3"
+                onClick={() => router.push("/")}
+              >
                 <Image src="/static/logo.png" preview={false} />
                 <div className="!hidden lg:!block px-3">
                   <Typography.Title
                     level={5}
                     className="!text-red-500 !font-medium !text-center lg:!text-left !my-0 uppercase !text-sm"
-                    onClick={() => router.push("/")}
                   >
                     Bộ tài chính
                   </Typography.Title>
                   <Typography.Title
                     level={3}
                     className="!text-red-500 !font-bold !text-center lg:!text-left !my-0 uppercase"
-                    onClick={() => router.push("/")}
                   >
                     Kho bạc nhà nước
                   </Typography.Title>
                   <Typography.Title
                     level={5}
                     className="!text-red-500 !font-medium !text-center lg:!text-left !my-0 uppercase !text-sm"
-                    onClick={() => router.push("/")}
                   >
                     cổng thông tin kho bạc nhà nước
                   </Typography.Title>
