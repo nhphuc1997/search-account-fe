@@ -50,7 +50,7 @@ export default function Wrapper({
       <Layout className="">
         <Header className="!h-auto cursor-pointer sticky top-0 z-10 !w-full !bg-[#f5f5f5] !px-0 lg:!px-40">
           <div className="flex flex-col">
-            <div className="flex justify-between py-2 !bg-[#fff7e8] w-full">
+            <div className="flex justify-between !bg-[#fff7e8] w-full">
               <div className="flex flex-col lg:flex-row justify-start items-center !w-1/3">
                 <Image src="/static/logo.png" />
                 <div className="!hidden lg:!block">
