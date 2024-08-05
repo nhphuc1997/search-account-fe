@@ -48,20 +48,29 @@ export default function Wrapper({
   return (
     <QueryClientProvider client={queryClient}>
       <Layout className="">
-        <Header
-          className="!h-auto cursor-pointer sticky top-0 z-10 w-full !bg-white !px-0 lg:!px-40 bg-center bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
-        >
-          <div className="flex flex-col">
+        <Header className="!h-auto cursor-pointer sticky top-0 z-10 !w-full !bg-[#f5f5f5] !px-0 lg:!px-40">
+          <div
+            className="flex flex-col bg-center bg-cover !bg-no-repeat"
+            style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
+          >
             <div className="flex justify-start items-center py-2">
               <Image src="/static/logo.png" />
-              <Typography.Title
-                level={5}
-                className="!text-red-500 !font-bold uppercase !text-center lg:!text-left"
-                onClick={() => router.push("/")}
-              >
-                CỔNG THÔNG TIN ĐIỆN TỬ KHO BẠC NHÀ NƯỚC
-              </Typography.Title>
+              <div>
+                <Typography.Title
+                  level={3}
+                  className="!text-red-500 !font-medium !text-center lg:!text-left !my-0"
+                  onClick={() => router.push("/")}
+                >
+                  Bộ tài chính
+                </Typography.Title>
+                <Typography.Title
+                  level={4}
+                  className="!text-red-500 !font-bold uppercase !text-center lg:!text-left !my-0"
+                  onClick={() => router.push("/")}
+                >
+                  Kho bạc nhà nước
+                </Typography.Title>
+              </div>
             </div>
 
             <div className="!hidden lg:!flex h-[40px] w-full">
