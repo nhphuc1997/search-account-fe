@@ -152,7 +152,7 @@ export default function Wrapper({
                   icon={<SearchOutlined />}
                   type="text"
                   iconPosition="end"
-                  className="!text-white hover:!bg-transparent"
+                  className="!text-white hover:!bg-transparent cursor-pointer"
                   onClick={(e) => {
                     e.preventDefault();
                     return router.push("/search");
