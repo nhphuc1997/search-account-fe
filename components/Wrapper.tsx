@@ -53,22 +53,34 @@ export default function Wrapper({
             className="flex flex-col bg-center bg-cover !bg-no-repeat"
             style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
           >
-            <div className="flex justify-start items-center py-2">
-              <Image src="/static/logo.png" />
+            <div className="flex justify-between items-end py-2">
+              <div className="flex justify-start items-center">
+                <Image src="/static/logo.png" />
+                <div>
+                  <Typography.Title
+                    level={3}
+                    className="!text-red-500 !font-medium !text-center lg:!text-left !my-0"
+                    onClick={() => router.push("/")}
+                  >
+                    Bộ tài chính
+                  </Typography.Title>
+                  <Typography.Title
+                    level={4}
+                    className="!text-red-500 !font-bold uppercase !text-center lg:!text-left !my-0"
+                    onClick={() => router.push("/")}
+                  >
+                    Kho bạc nhà nước
+                  </Typography.Title>
+                </div>
+              </div>
+
               <div>
                 <Typography.Title
-                  level={3}
-                  className="!text-red-500 !font-medium !text-center lg:!text-left !my-0"
+                  level={5}
+                  className="!text-black !my-0"
                   onClick={() => router.push("/")}
                 >
-                  Bộ tài chính
-                </Typography.Title>
-                <Typography.Title
-                  level={4}
-                  className="!text-red-500 !font-bold uppercase !text-center lg:!text-left !my-0"
-                  onClick={() => router.push("/")}
-                >
-                  Kho bạc nhà nước
+                  {new Date().toDateString().split("-").reverse().join("-")}
                 </Typography.Title>
               </div>
             </div>
