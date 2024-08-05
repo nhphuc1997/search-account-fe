@@ -63,7 +63,7 @@ export default function FormSearch() {
   };
 
   return (
-    <div className="">
+    <div className="w-full md:w-1/2 mx-auto">
       {context}
       <Form
         name="trigger"
@@ -129,7 +129,7 @@ export default function FormSearch() {
               iconPosition="end"
               type="primary"
               htmlType="submit"
-              className="w-[250px]"
+              className="w-[250px] !bg-[#246097]"
               loading={btnLoading}
             >
               Tra cứu
