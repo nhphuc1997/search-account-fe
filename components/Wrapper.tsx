@@ -51,9 +51,9 @@ export default function Wrapper({
         <Header className="!h-auto cursor-pointer sticky top-0 z-10 !w-full !bg-[#f5f5f5] !px-0 lg:!px-40">
           <div className="flex flex-col">
             <div className="flex justify-between py-2 !bg-[#fff7e8] w-full">
-              <div className="flex justify-start items-center !w-1/3">
+              <div className="flex flex-col lg:flex-row justify-start items-center !w-1/3">
                 <Image src="/static/logo.png" />
-                <div className="">
+                <div className="!hidden lg:!block">
                   <Typography.Title
                     level={5}
                     className="!text-red-500 !font-medium !text-center lg:!text-left !my-0"
@@ -70,7 +70,7 @@ export default function Wrapper({
                   </Typography.Title>
                   <Typography.Title
                     level={5}
-                    className="!text-red-500 !font-medium uppercase !text-center lg:!text-left !my-0"
+                    className="!text-red-500 !font-medium !text-center lg:!text-left !my-0 capitalize"
                     onClick={() => router.push("/")}
                   >
                     cổng thông tin kho bạc nhà nước
@@ -79,16 +79,39 @@ export default function Wrapper({
               </div>
 
               <div
-                className="bg-center bg-cover !bg-no-repeat !w-2/3 !h-[100px] flex justify-end items-end"
+                className="bg-center bg-cover !bg-no-repeat !w-2/3 !h-[100px] flex justify-center items-center lg:justify-end lg:items-end"
                 style={{ backgroundImage: `url(/static/bg_banner.jpg)` }}
               >
-                <Typography.Title
-                  level={5}
-                  className="!text-black !my-0 px-3"
-                  onClick={() => router.push("/")}
-                >
-                  {new Date().toDateString().split("-").reverse().join("-")}
-                </Typography.Title>
+                <div className="!block lg:!hidden px-1">
+                  <Typography.Text
+                    className="!text-red-500 !font-medium !my-0 !text-sm block"
+                    onClick={() => router.push("/")}
+                  >
+                    Bộ tài chính
+                  </Typography.Text>
+                  <Typography.Text
+                    className="!text-red-500 !font-bold uppercase !my-0 !text-sm block"
+                    onClick={() => router.push("/")}
+                  >
+                    Kho bạc nhà nước
+                  </Typography.Text>
+                  <Typography.Text
+                    className="!text-red-500 !font-medium !my-0 !text-sm block capitalize"
+                    onClick={() => router.push("/")}
+                  >
+                    cổng thông tin kho bạc nhà nước
+                  </Typography.Text>
+                </div>
+
+                <div>
+                  <Typography.Title
+                    level={5}
+                    className="!text-black !my-0 px-3 !hidden lg:!block"
+                    onClick={() => router.push("/")}
+                  >
+                    {new Date().toDateString().split("-").reverse().join("-")}
+                  </Typography.Title>
+                </div>
               </div>
             </div>
 
