@@ -43,27 +43,27 @@ export default function MainNews() {
     { url: "https://chinhphu.vn/", img: "/static/a4.jpg" },
   ];
 
-  const listCQ = [
-    {
-      url: "https://www.gdt.gov.vn/",
-      img: "/static/thue.png",
-      name: "Tổng cục thuế",
-    },
-    {
-      url: "https://www.customs.gov.vn/",
-      img: "/static/dutru.png",
-      name: "Tổng cục dự trữ",
-    },
-    {
-      url: "http://www.gdsr.gov.vn/Pages/Home.aspx",
-      img: "/static/haiquan.png",
-      name: "Tổng hải quan",
-    },
-    {
-      url: "https://ssc.gov.vn/webcenter/portal/ubck",
-      img: "/static/ck.png",
-      name: "Ủy Ban Chứng Khoán Nhà Nước",
-    },
+  const listCQ: any[] = [
+    // {
+    //   url: "https://www.gdt.gov.vn/",
+    //   img: "/static/thue.png",
+    //   name: "Tổng cục thuế",
+    // },
+    // {
+    //   url: "https://www.customs.gov.vn/",
+    //   img: "/static/dutru.png",
+    //   name: "Tổng cục dự trữ",
+    // },
+    // {
+    //   url: "http://www.gdsr.gov.vn/Pages/Home.aspx",
+    //   img: "/static/haiquan.png",
+    //   name: "Tổng hải quan",
+    // },
+    // {
+    //   url: "https://ssc.gov.vn/webcenter/portal/ubck",
+    //   img: "/static/ck.png",
+    //   name: "Ủy Ban Chứng Khoán Nhà Nước",
+    // },
   ];
 
   return (
