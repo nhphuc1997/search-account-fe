@@ -228,9 +228,6 @@ export default function Wrapper({
                 Số 32 Cát Linh - Đống Đa - Hà Nội
               </Typography.Paragraph>
               <Typography.Paragraph className="!my-1">
-                Tel: (84-24) 62 764 300 Fax: (84-24) 62 764 367
-              </Typography.Paragraph>
-              <Typography.Paragraph className="!my-1">
                 Email: congttdtkbnn@vst.gov.vn
               </Typography.Paragraph>
             </div>
