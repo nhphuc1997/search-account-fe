@@ -99,7 +99,7 @@ export default function AbsNormalTransactions() {
       <Row>
         <Col xs={24} md={12}>
           <Typography.Title level={5} className="text-center md:text-left">
-            Thông tin các giao dịch bất thường
+            Danh sách các giao dịch bất thường
           </Typography.Title>
         </Col>
       </Row>
