@@ -29,12 +29,12 @@ export default function AbsNormalTransactions() {
   useQuery({
     queryKey: [
       "get-transaction",
-      [accountStore.accountStore?.transactionGroupId, transactionsPage],
+      [accountStore.account?.transactionGroupId, transactionsPage],
     ],
     queryFn: async () => {
       setTranLoading(true);
       const $filter = {
-        transactionGroupId: accountStore.accountStore?.transactionGroupId,
+        transactionGroupId: accountStore.account?.transactionGroupId,
       };
       const _params = {
         s: JSON.stringify($filter),
