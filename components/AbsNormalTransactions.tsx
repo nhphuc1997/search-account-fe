@@ -1,3 +1,4 @@
+import { useAccountStore } from "@/stores/account.store";
 import { doGet } from "@/utils/doMethod";
 import { formatCurrency } from "@/utils/format";
 import { FileProtectOutlined } from "@ant-design/icons";
@@ -18,6 +19,7 @@ import { useState } from "react";
 export default function AbsNormalTransactions() {
   const param = useParams();
   const router = useRouter();
+  const accountStore = useAccountStore((state: any) => state);
 
   const [transactions, setTransactions] = useState<any>([]);
   const [transactionsTotal, setTransactionsTotal] = useState<number>(0);
@@ -25,11 +27,14 @@ export default function AbsNormalTransactions() {
   const [tranLoading, setTranLoading] = useState<boolean>(false);
 
   useQuery({
-    queryKey: ["get-transaction", [param.id, transactionsPage]],
+    queryKey: [
+      "get-transaction",
+      [accountStore.accountStore?.transactionGroupId, transactionsPage],
+    ],
     queryFn: async () => {
       setTranLoading(true);
       const $filter = {
-        retrieverAccountId: param.id,
+        transactionGroupId: accountStore.accountStore?.transactionGroupId,
       };
       const _params = {
         s: JSON.stringify($filter),
@@ -48,6 +53,14 @@ export default function AbsNormalTransactions() {
       return false;
     },
   });
+
+  const getTagColor = (status: string) => {
+    return {
+      "Bảo lưu": "red",
+      "Đang xử lý": "orange",
+      "Đã giải ngân": "green",
+    }[status];
+  };
 
   const columns: TableProps["columns"] = [
     {
@@ -77,29 +90,25 @@ export default function AbsNormalTransactions() {
     },
     {
       title: "Trạng thái",
-      dataIndex: "status",
-      key: "status",
+      dataIndex: "",
+      key: "",
       align: "center",
       render(value, record, index) {
-        return <Tag color={`${getTagColor(value)}`}>{value}</Tag>;
+        return (
+          <Tag color={`${getTagColor(value?.transactionStatus?.name)}`}>
+            {value?.transactionStatus?.name}
+          </Tag>
+        );
       },
     },
   ];
-
-  const getTagColor = (status: string) => {
-    return {
-      "Bảo lưu": "red",
-      "Đang xử lí": "orange",
-      "Đã giải ngân": "green",
-    }[status];
-  };
 
   return (
     <div className="py-3">
       <Row>
         <Col xs={24} md={12}>
           <Typography.Title level={5} className="text-center md:text-left">
-            Danh sách các giao dịch bất thường
+            Các giao dịch bất thường
           </Typography.Title>
         </Col>
       </Row>
